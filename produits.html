@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produits — Brain Storm Group</title>
+  <meta name="description" content="Découvrez notre gamme complète de plus de 95 produits professionnels pour la défense, la sécurité, la navigation et les équipements spécialisés.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* styles inchangés (identiques à ceux fournis) */
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #fafaf8;
+      --surface: #f5f4f0;
+      --text-primary: #1a1916;
+      --text-secondary: #5c5a54;
+      --text-muted: #9e9b92;
+      --border: #e8e5de;
+      --accent: #c8a96e;
+      --accent-hover: #b39860;
+      --accent-light: #f5edd9;
+      --nav-h: 72px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 200;
+      transition: box-shadow .3s var(--ease);
+    }
+    .navbar.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.05); }
+    .nav-container {
+      max-width: 1440px; margin: 0 auto; height: 100%;
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo img { height: 38px; width: auto; object-fit: contain; }
+    .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--text-primary); letter-spacing: -.01em; }
+    .logo-text span { color: var(--accent); }
+    .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: .875rem; font-weight: 500;
+      transition: color .2s var(--ease); position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: var(--accent);
+      transition: width .3s var(--ease);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--accent); }
+
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; }
+    .burger span { display: block; width: 24px; height: 1.5px; background: var(--text-primary); transition: all .3s var(--ease); border-radius: 2px; }
+    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,.98); backdrop-filter: blur(20px);
+      z-index: 199; padding: 2rem; flex-direction: column; gap: .5rem;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text-primary); text-decoration: none; font-size: 1.1rem; font-weight: 500; padding: .875rem 0; border-bottom: 1px solid var(--border); transition: color .2s; }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .main-content { margin-top: var(--nav-h); }
+    .hero-section {
+      padding: 4.5rem 2rem 3.5rem;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-container { max-width: 1440px; margin: 0 auto; }
+    .breadcrumb { display: flex; align-items: center; gap: .5rem; font-size: .8125rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--text-secondary); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 600; letter-spacing: -.02em;
+      color: var(--text-primary); margin-bottom: .75rem; line-height: 1.1;
+    }
+    .hero-subtitle { font-size: 1.0625rem; color: var(--text-secondary); max-width: 560px; line-height: 1.75; }
+
+    /* ── LAYOUT ── */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+      padding: 2.5rem 2rem 2.5rem 0;
+      border-right: 1px solid var(--border);
+      max-height: calc(100vh - var(--nav-h) - 4rem);
+      overflow-y: auto;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .sidebar-title {
+      font-size: .6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1.25rem;
+    }
+    .sidebar-cat { margin-bottom: .25rem; }
+    .sidebar-cat-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: .6rem .75rem; border-radius: 6px;
+      font-size: .875rem; font-weight: 500; color: var(--text-secondary);
+      transition: all .2s var(--ease); text-align: left; font-family: inherit;
+    }
+    .sidebar-cat-btn:hover { background: var(--surface); color: var(--text-primary); }
+    .sidebar-cat-btn.active { background: var(--accent-light); color: var(--accent); }
+    .sidebar-cat-btn i.arrow { font-size: .6875rem; transition: transform .3s; flex-shrink: 0; }
+    .sidebar-cat.open .sidebar-cat-btn i.arrow { transform: rotate(90deg); }
+
+    .sidebar-sub {
+      max-height: 0; overflow: hidden; transition: max-height .35s var(--ease);
+      padding-left: 1rem;
+    }
+    .sidebar-cat.open .sidebar-sub { max-height: 500px; }
+    .sidebar-sub-btn {
+      display: block; width: 100%; background: none; border: none; cursor: pointer;
+      padding: .45rem .75rem; border-radius: 6px;
+      font-size: .8125rem; color: var(--text-muted);
+      transition: all .2s var(--ease); text-align: left; font-family: inherit;
+    }
+    .sidebar-sub-btn:hover { color: var(--text-primary); background: var(--surface); }
+    .sidebar-sub-btn.active { color: var(--accent); font-weight: 500; }
+
+    .sidebar-all-btn {
+      display: flex; align-items: center; gap: .5rem;
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: .6rem .75rem; border-radius: 6px;
+      font-size: .875rem; font-weight: 600; color: var(--text-primary);
+      transition: all .2s var(--ease); margin-bottom: .75rem; font-family: inherit;
+    }
+    .sidebar-all-btn:hover { background: var(--surface); }
+    .sidebar-all-btn.active { background: var(--text-primary); color: #fff; }
+    .count-badge {
+      margin-left: auto; background: var(--border); color: var(--text-muted);
+      font-size: .6875rem; font-weight: 600; padding: .15rem .45rem;
+      border-radius: 20px;
+    }
+    .sidebar-all-btn.active .count-badge { background: rgba(255,255,255,.2); color: rgba(255,255,255,.7); }
+
+    .sidebar-partners { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .sidebar-partners-title { font-size: .6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: 1rem; }
+    .partner-badge {
+      display: inline-block; margin: .2rem .2rem .2rem 0;
+      padding: .3rem .65rem; border: 1px solid var(--border);
+      border-radius: 4px; font-size: .6875rem; font-weight: 600;
+      color: var(--text-secondary); letter-spacing: .04em;
+      transition: all .2s;
+    }
+    .partner-badge:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+    /* ── PRODUCTS AREA ── */
+    .products-area { padding: 2.5rem 0 5rem 2.5rem; }
+
+    .section-header { margin-bottom: 2.5rem; }
+    .section-label {
+      font-size: .6875rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--accent); margin-bottom: .5rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      font-weight: 600; letter-spacing: -.02em;
+      color: var(--text-primary); line-height: 1.2;
+    }
+    .section-count { font-size: .875rem; color: var(--text-muted); margin-top: .375rem; }
+
+    .cat-block { margin-bottom: 4rem; }
+    .cat-block-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem;
+    }
+    .cat-block-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.625rem; font-weight: 600; color: var(--text-primary);
+      white-space: nowrap;
+    }
+    .cat-block-line { flex: 1; height: 1px; background: var(--border); }
+
+    .sub-block { margin-bottom: 2.5rem; }
+    .sub-block-title {
+      font-size: .75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .09em; color: var(--text-muted);
+      margin-bottom: 1.25rem; padding-bottom: .625rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1.125rem;
+    }
+
+    .product-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all .3s var(--ease);
+      cursor: pointer;
+      animation: fadeUp .4s var(--ease) forwards;
+      opacity: 0;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.07);
+      border-color: var(--accent);
+    }
+    .product-image {
+      width: 100%; aspect-ratio: 1;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%; height: 100%; object-fit: contain;
+      padding: 1.25rem;
+      transition: transform .35s var(--ease);
+    }
+    .product-card:hover .product-image img { transform: scale(1.06); }
+    .icon-placeholder { font-size: 2rem; color: var(--text-muted); opacity: .35; }
+    .product-info { padding: .875rem 1rem 1rem; }
+    .product-name {
+      font-size: .9375rem; font-weight: 500;
+      color: var(--text-primary); line-height: 1.4;
+    }
+
+    /* ── MODAL CARROUSEL (PREMIUM) ── */
+    .product-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .product-modal.open { display: flex; }
+    .product-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(4px);
+    }
+    .product-modal-dialog {
+      position: relative;
+      max-width: 1200px;
+      width: 90%;
+      max-height: 90vh;
+      margin: 1.5rem;
+      background: #fff;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+      padding: 2.5rem;
+      z-index: 1;
+      overflow-y: auto;
+    }
+    .product-modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      transition: all .2s var(--ease);
+      z-index: 10;
+    }
+    .product-modal-close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+    .product-modal-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    /* Carrousel */
+    .product-modal-left {
+      position: relative;
+    }
+    .product-modal-carousel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .carousel-main {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--surface);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,.03);
+    }
+    .carousel-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 1.5rem;
+      transition: opacity 0.2s ease;
+    }
+    .carousel-prev, .carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      opacity: 0.8;
+      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+    }
+    .carousel-prev:hover, .carousel-next:hover {
+      opacity: 1;
+      border-color: var(--accent);
+      color: var(--accent);
+      background: white;
+    }
+    .carousel-prev { left: 1rem; }
+    .carousel-next { right: 1rem; }
+    .carousel-thumbnails {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .carousel-thumb {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      overflow: hidden;
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      opacity: 0.7;
+    }
+    .carousel-thumb:hover, .carousel-thumb.active {
+      border-color: var(--accent);
+      opacity: 1;
+    }
+    .carousel-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Détails produit */
+    .product-modal-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-top: 0.5rem;
+    }
+    .product-modal-category {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .product-modal-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin: 0 0 0.25rem;
+    }
+    .product-modal-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      white-space: pre-line;
+      background: var(--bg-alt);
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    .product-modal-cta {
+      margin-top: 1rem;
+    }
+    .product-modal-cta .sidebar-all-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 1rem;
+      font-size: 1rem;
+      background: var(--text-primary);
+      color: white;
+      border: none;
+    }
+    .product-modal-cta .sidebar-all-btn:hover {
+      background: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .product-modal-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .product-modal-dialog {
+        padding: 2rem 1.5rem;
+      }
+      .product-modal-name { font-size: 1.8rem; }
+    }
+    @media (max-width: 480px) {
+      .carousel-thumb { width: 50px; height: 50px; }
+      .product-modal-dialog { padding: 1.5rem; }
+    }
+
+    .empty-state { text-align: center; padding: 5rem 2rem; display: none; }
+    .empty-state.show { display: block; }
+    .empty-state i { font-size: 2.5rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .empty-state h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: .5rem; }
+    .empty-state p { color: var(--text-secondary); }
+
+    /* ── FOOTER ARRANGÉ (VERSION AMÉLIORÉE) ── */
+    .footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      padding: 4rem 2rem 2rem;
+      font-size: 0.9375rem;
+    }
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 3rem 2rem;
+    }
+    .footer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-section h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-section h4 i {
+      color: var(--accent);
+      font-size: 1.1rem;
+      width: 1.5rem;
+    }
+    .footer-section p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .footer-section ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer-section li {
+      margin-bottom: 0.45rem;
+    }
+    .footer-section a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+    .footer-section a:hover {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+    .footer-section .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+    .footer-section .contact-item i {
+      color: var(--accent);
+      width: 1.25rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .footer-bottom {
+      max-width: 1440px;
+      margin: 3rem auto 0;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-bottom-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover {
+      color: var(--accent);
+    }
+    .footer-bottom-copy {
+      color: var(--text-muted);
+    }
+    @media (max-width: 640px) {
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-bottom-links {
+        justify-content: center;
+      }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE FILTER BAR ── */
+    .mobile-filter-bar {
+      display: none;
+      gap: .625rem; overflow-x: auto; padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+    }
+    .mobile-filter-bar::-webkit-scrollbar { display: none; }
+    .mobile-filter-btn {
+      padding: .5rem 1.125rem; border: 1px solid var(--border); border-radius: 20px;
+      background: var(--bg); font-size: .8125rem; font-weight: 500;
+      color: var(--text-secondary); white-space: nowrap; cursor: pointer;
+      transition: all .2s; font-family: inherit;
+    }
+    .mobile-filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .mobile-filter-btn.active { background: var(--text-primary); border-color: var(--text-primary); color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .page-layout { grid-template-columns: 1fr; padding: 0 1.25rem; }
+      .sidebar { display: none; }
+      .products-area { padding: 2rem 0 4rem; }
+      .mobile-filter-bar { display: flex; }
+      .hero-section { padding: 3rem 1.25rem 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: .875rem; }
+    }
+
+    .models-view-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .back-to-brands { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text-secondary); font-size: .875rem; font-weight: 500; cursor: pointer; transition: all .2s var(--ease); font-family: inherit; }
+    .back-to-brands:hover { border-color: var(--accent); color: var(--accent); }
+    .models-view-title { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); } /* modifié : police DM Sans */
+  </style>
+</head>
+<body>
+
+<!-- NAV (identique) -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="accueil.html" class="logo">
+      <img src="logo.jpeg" alt="Brain Storm Group">
+      <div class="logo-text">Brain <span>Storm</span> Group</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="produits.html" class="active">Produits</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="accueil.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="produits.html" class="active">Produits</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<main class="main-content">
+
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="breadcrumb">
+        <a href="accueil.html">Accueil</a>
+        <span>/</span>
+        <span>Produits</span>
+      </div>
+      <h1 class="hero-title">Nos Produits</h1>
+      <p class="hero-subtitle">Plus de 95 solutions professionnelles pour la défense, la sécurité, la navigation et les équipements spécialisés.</p>
+    </div>
+  </section>
+
+  <section class="hero-section" style="padding-top:2.25rem;padding-bottom:2.25rem">
+    <div class="hero-container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.25rem">
+        <div>
+          <p class="section-label" style="margin:0 0 .25rem">Accès rapide</p>
+          <h2 class="section-title" style="font-size:1.6rem;margin:0">Catégories</h2>
+        </div>
+        <a href="#catalogue" class="sidebar-all-btn" style="width:auto">Voir le catalogue</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem">
+        <!-- RadioCommunications - image PRC-2080+ -->
+        <a href="#catalogue" class="product-card" style="opacity:1;animation:none" onclick="event.preventDefault();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'});filterCat('radiocoms');">
+          <div class="product-image">
+            <img src="images/PRC-2080+.jpg" alt="RadioCommunications" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-broadcast-tower\\'></i></span>'">
+          </div>
+          <div class="product-info"><div class="product-name">RadioCommunications</div></div>
+        </a>
+        <!-- RadioNavigation - image Milkor MA-380 -->
+        <a href="#catalogue" class="product-card" style="opacity:1;animation:none" onclick="event.preventDefault();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'});filterCat('navigation');">
+          <div class="product-image">
+            <img src="images/Milkor MA-380.jpg" alt="RadioNavigation" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-compass\\'></i></span>'">
+          </div>
+          <div class="product-info"><div class="product-name">RadioNavigation</div></div>
+        </a>
+        <!-- Effets d'Habillement Militaires - image Tenues de camouflage (première) -->
+        <a href="#catalogue" class="product-card" style="opacity:1;animation:none" onclick="event.preventDefault();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'});filterCat('effets');">
+          <div class="product-image">
+            <img src="images/Tenue de Camouflage Tactique (1).jpg" alt="Effets d'Habillement Militaires" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-shield-alt\\'></i></span>'">
+          </div>
+          <div class="product-info"><div class="product-name">Effets d'Habillement Militaires</div></div>
+        </a>
+        <!-- Matériel de Sécurité - image Vehicules de Combat (première) -->
+        <a href="#catalogue" class="product-card" style="opacity:1;animation:none" onclick="event.preventDefault();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'});filterCat('securite');">
+          <div class="product-image">
+            <img src="images/Véhicule de Combat.jpg" alt="Matériel de Sécurité" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-lock\\'></i></span>'">
+          </div>
+          <div class="product-info"><div class="product-name">Matériel de Sécurité</div></div>
+        </a>
+        <!-- Identification - image Hivision DS-2TD2537T-10-Q (caméra thermique) -->
+        <a href="#catalogue" class="product-card" style="opacity:1;animation:none" onclick="event.preventDefault();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'});filterCat('identification');">
+          <div class="product-image">
+            <img src="images/Hivision DS-2TD2537T-10-Q.jpg" alt="Identification" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-id-card\\'></i></span>'">
+          </div>
+          <div class="product-info"><div class="product-name">Identification</div></div>
+        </a>
+        <!-- Équipements Médicaux - image Scanner Thoracique -->
+        <a href="#catalogue" class="product-card" style="opacity:1;animation:none" onclick="event.preventDefault();document.getElementById('catalogue').scrollIntoView({behavior:'smooth'});filterCat('medical');">
+          <div class="product-image">
+            <img src="images/Scanner Thoracique.jpg" alt="Équipements Médicaux" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-heartbeat\\'></i></span>'">
+          </div>
+          <div class="product-info"><div class="product-name">Équipements Médicaux</div></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mobile-filter-bar" id="mobileFilterBar"></div>
+
+  <div class="page-layout" id="catalogue">
+
+    <aside class="sidebar" id="sidebar">
+      <button class="sidebar-all-btn active" id="allBtn" onclick="showAll()">
+        <i class="fas fa-th-large" style="font-size:.8rem;"></i>
+        Tout voir
+        <span class="count-badge" id="totalCount">0</span>
+      </button>
+      <p class="sidebar-title">Catégories</p>
+      <div id="sidebarCats"></div>
+      <div class="sidebar-partners">
+        <p class="sidebar-partners-title">Partenaires</p>
+        <span class="partner-badge">PARAMOUNT</span>
+        <span class="partner-badge">DENEL</span>
+        <span class="partner-badge">KATMERCILER</span>
+        <span class="partner-badge">BMC</span>
+        <span class="partner-badge">MILKOR</span>
+        <span class="partner-badge">TAR</span>
+        <span class="partner-badge">SAFRAN</span>
+        <span class="partner-badge">TSU</span>
+        <span class="partner-badge">HUDECO LTD</span>
+        <span class="partner-badge">HALO TECHNOLOGY LTD</span>
+        <span class="partner-badge">PROXISIGN (PTY) LTD</span>
+        <span class="partner-badge">  </span>
+        <span class="partner-badge">KENWOOD</span>
+        <span class="partner-badge">MOTOROLA</span>
+        <span class="partner-badge">ICOM</span>
+        <span class="partner-badge">TAIT</span>
+        <span class="partner-badge">HYTERA</span>
+        <span class="partner-badge">TETRA</span>
+        <span class="partner-badge">BARETT COMMUNICATION UK</span>
+        <span class="partner-badge">BARETT COMMUNICATIONS AUSTRALIE</span>
+      </div>
+    </aside>
+
+    <div class="products-area">
+      <div class="section-header">
+        <p class="section-label" id="sectionLabel">Catalogue complet</p>
+        <h2 class="section-title" id="sectionTitle">Tous les produits</h2>
+        <p class="section-count" id="sectionCount"></p>
+      </div>
+      <div id="productsArea"></div>
+      <div class="empty-state" id="emptyState">
+        <i class="fas fa-box-open"></i>
+        <h3>Aucun produit</h3>
+        <p>Cette catégorie est en cours de mise à jour.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- PRODUCT MODAL (CARROUSEL) -->
+<div class="product-modal" id="productModal" aria-hidden="true">
+  <div class="product-modal-backdrop" onclick="closeProductModal()"></div>
+  <div class="product-modal-dialog" role="dialog" aria-modal="true">
+    <button class="product-modal-close" type="button" onclick="closeProductModal()">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="product-modal-layout">
+      <!-- Colonne gauche : carrousel -->
+      <div class="product-modal-left">
+        <div class="product-modal-carousel" id="productCarousel">
+          <div class="carousel-main">
+            <img id="carousel-main-img" src="" alt="">
+            <button class="carousel-prev" id="carouselPrev" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-next" id="carouselNext" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="carousel-thumbnails" id="carouselThumbnails"></div>
+        </div>
+      </div>
+      <!-- Colonne droite : détails -->
+      <div class="product-modal-right">
+        <p class="product-modal-category" id="pmCategory"></p>
+        <h2 class="product-modal-name" id="pmName"></h2>
+        <div class="product-modal-desc" id="pmDesc"></div>
+        <div class="product-modal-cta">
+          <a id="pmInfoBtn" href="mailto:info@brainstormgroup.com" class="sidebar-all-btn">
+            Infos & devis
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ARRANGÉ ==================== -->
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Colonne 1 : Société -->
+    <div class="footer-section">
+      <h4><i class="fas fa-building"></i> Brain Storm Group</h4>
+      <p>Intégrateur de solutions sécuritaires pour la défense, l'industrie et les services de secours en Afrique de l'Ouest.</p>
+      <p style="font-size:0.8125rem; color:var(--text-muted);">SARL · RCCM CI-ABJ-2018-B-09091</p>
+    </div>
+
+    <!-- Colonne 2 : Navigation -->
+    <div class="footer-section">
+      <h4><i class="fas fa-compass"></i> Navigation</h4>
+      <ul>
+        <li><a href="accueil.html">Accueil</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="produits.html">Produits</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 3 : Domaines d'activité -->
+    <div class="footer-section">
+      <h4><i class="fas fa-tags"></i> Domaines</h4>
+      <ul>
+        <li><a href="#RadioCommunications-Navigation.html#radiocommunications">RadioCommunications</a></li>
+        <li><a href="#RadioCommunications-Navigation.html#radionavigation">RadioNavigation</a></li>
+        <li><a href="#Effets.html">Effets d'Habillement Militaires</a></li>
+        <li><a href="#Matériel de sécurité.html">Matériel de Sécurité</a></li>
+        <li><a href="#Identifications.html">Identification</a></li>
+        <li><a href="#Equipements médicaux.html">Équipements Médicaux</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 4 : Contact -->
+    <div class="footer-section">
+      <h4><i class="fas fa-phone-alt"></i> Contact</h4>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:bgsarl@gmail.com">bgsarl@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Cotonou, Bénin</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barre inférieure : mentions légales + copyright -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-copy">
+      © 2026 Brain Storm Group — Tous droits réservés
+    </div>
+    <div class="footer-bottom-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">CGV</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ==================== DONNÉES AVEC IMAGES EN TABLEAU ====================
+const BRANDS_DATA = {
+  "Belfone": { models: [
+    { name: "BF-TD510", description: "Radio portable professionnelle DMR / analogique – Bande VHF/UHF (136-174 MHz / 400-470 MHz) – Puissance 5W – Batterie 2200 mAh – Indice de protection IP67 – Idéale pour les communications d'équipe en environnements exigeants.", images: ["images/BF-TD510.jpg"] },
+    { name: "BF-TD511", description: "Radio portable DMR numérique – Double slot, compatible analogique – Bande UHF 400-470 MHz – Puissance 5W – Autonomie 16h – GPS intégré et fonction de localisation – Robustesse IP67.", images: ["images/BF-TD511.jpg"] },
+    { name: "BF-TD935", description: "Radio portable DMR compacte – Bande VHF/UHF au choix – Puissance 4W – Écran OLED, clavier complet – Batterie 2000 mAh – Idéale pour PME, sécurité, hôtellerie.", images: ["images/BF-TD935.jpg"] },
+    { name: "BF-TM8500", description: "Radio mobile professionnelle VHF/UHF – Puissance 25W/25W – Conçue pour installation véhicule – 128 canaux – Compatible DMR et analogique – Construction robuste, idéale pour flottes.", images: ["images/BF-TM8500.jpg"] },
+    { name: "BF-TR8050", description: "Relais DMR professionnel – Bande UHF (400-470 MHz) – Puissance 50W – Gère deux slots simultanés – Ethernet intégré pour supervision à distance – Parfait pour étendre la couverture réseau.", images: ["images/BF-TR8050.jpg"] },
+    { name: "BF-TR925R", description: "Manpack tactique – Bande VHF/UHF (30-512 MHz) – Puissance 10W – Résistance MIL-STD-810G – GPS, chiffrement AES256, mode furtif – Conçu pour les forces spéciales.", images: ["images/BF-TR925R.jpg"] },
+    { name: "BF-TR900", description: "Relais tactique portable – VHF/UHF – Puissance 10W – Autonome, batterie intégrée – Configuration rapide pour opérations temporaires – Léger, transportable en sac.", images: ["images/BF-TR900.jpg"] },
+    { name: "BF-TR925", description: "Manpack tactique – Bande VHF/UHF – Puissance 10W – Robustesse militaire, écran rétro-éclairé – GPS et communication de données – Idéal pour les missions de longue durée.", images: ["images/BF-TR925.jpg"] }
+  ]},
+  "Hytera": { models: [
+    { name: "Hytera-PD785_785G", description: "Radio portable DMR de nouvelle génération – Bande UHF (400-470 MHz) – Puissance 4W – Écran couleur 2.4”, GPS, Bluetooth – Compatible avec applications vocales et données – IP67.", images: ["images/Hytera-PD785_785G.jpg"] },
+    { name: "Hytera HP682 DMR", description: "Radio portable DMR – Bande UHF/VHF – Puissance 5W – 1024 canaux – Audio haute puissance (2W) – Idéale pour environnements bruyants – Certification IP68.", images: ["images/Hytera HP682 DMR.jpg"] },
+    { name: "Hytera-HM785", description: "Radio mobile DMR – Bande UHF 400-470 MHz – Puissance 25W/25W – GPS intégré, écran couleur 2.4” – Connectivité Bluetooth – Idéale pour véhicules d'urgence.", images: ["images/Hytera-HM785.jpg"] },
+    { name: "Hytera-MD625", description: "Radio mobile compacte – Bande VHF/UHF – Puissance 25W/25W – 256 canaux – Conception robuste – Parfaite pour les flottes commerciales.", images: ["images/Hytera-MD625.jpg"] },
+    { name: "Hytera-MD785", description: "Radio mobile haut de gamme – Bande UHF – Puissance 25W/25W – Double slots DMR – GPS, Bluetooth, écran tactile 2.4” – Compatible avec télématique.", images: ["images/Hytera-MD785.jpg"] },
+    { name: "Hytera-MD785_785G", description: "Version évoluée de la MD785 – Intégration GNSS (GPS+GLONASS) – Idéale pour applications de géolocalisation – Mêmes caractéristiques radio que MD785.", images: ["images/Hytera-MD785_785G.jpg"] },
+    { name: "Hytera-HR1065", description: "Relais DMR analogique/numérique – Bande VHF/UHF – Puissance 50W – Redondance IP65, Ethernet – Gestion à distance via réseau – Solution étendue pour grands sites.", images: ["images/Hytera-HR1065.jpg"] },
+    { name: "Hytera-RD985", description: "Relais DMR compact – Bande UHF – Puissance 25W/40W – Support double slots – Installation facile en local technique – Idéal pour PME.", images: ["images/Hytera-RD985.jpg"] }
+  ]},
+  "ICOM": { models: [
+    { name: "IC-F1000T", description: "Radio portable VHF (136-174 MHz) – Puissance 5W – 256 canaux – Conception simple et robuste – Idéale pour chantiers, sécurité – Indice IP54.", images: ["images/IC-F1000T.jpg"] },
+    { name: "IC-F3202DEX", description: "Radio portable DMR – Bande UHF (400-470 MHz) – Puissance 5W – Compatible IDAS (ICOM Digital Advanced System) – GPS intégré, écran 2 lignes – Idéale pour flottes professionnelles.", images: ["images/IC-F3202DEX.jpg"] },
+    { name: "IC-F6011", description: "Radio mobile VHF – Puissance 50W – 512 canaux – Châssis en aluminium, résistante – Idéale pour véhicules de secours – Balayage prioritaire.", images: ["images/IC-F6011.jpg"] },
+    { name: "IC-F6023", description: "Radio mobile UHF – Puissance 45W – 512 canaux – Conforme MIL-STD – Idéale pour installations professionnelles – Interface utilisateur intuitive.", images: ["images/IC-F6023.jpg"] },
+    { name: "IC-FR5100", description: "Relais VHF professionnel – Puissance 50W – 100 canaux – Design compact – Idéal pour sites isolés – Gestion de réseau simple.", images: ["images/IC-FR5100.jpg"] },
+    { name: "IC-M801", description: "Radio portable maritime VHF – Puissance 5W – Étanche IPX8 – Fonction DSC, GPS intégré – Parfaite pour la navigation de plaisance et professionnelle.", images: ["images/IC-M801.jpg"] },
+    { name: "IC-M37", description: "Radio maritime portable – VHF – Puissance 5W – Écran LCD – IPX7 – Idéale pour petites embarcations – Batterie longue durée.", images: ["images/IC-M37.jpg"] },
+    { name: "IC-M94DE", description: "Radio maritime portable avec écran couleur – VHF – Puissance 5W – GPS intégré, DSC – Fonction AIS réception – Idéale pour les marins exigeants.", images: ["images/IC-M94DE.jpg"] },
+    { name: "IC-M330GE", description: "Radio mobile maritime VHF – Puissance 25W/1W – Étanche IPX8 – Écran rétro-éclairé – Parfaite pour la timonerie – Conforme normes internationales.", images: ["images/IC-M330GE.jpg"] },
+    { name: "ic-m510e", description: "Radio mobile maritime VHF – Puissance 25W – Écran TFT 2,4” – Fonctions AIS, DSC, GPS – Idéale pour la navigation côtière et hauturière.", images: ["images/ic-m510e.jpg"] }
+  ]},
+  "Kenwood": { models: [
+    { name: "NX-200G_300G", description: "Radio portable NEXEDGE – VHF/UHF – Puissance 5W – GPS intégré – 1024 canaux – Résistance MIL-STD – Idéale pour sécurité publique.", images: ["images/NX-200G_300G.jpg"] },
+    { name: "NX3220_3320", description: "Radio portable DMR/NXDN – Bande VHF/UHF – Puissance 5W – 32 canaux – Bluetooth, GPS en option – Design robuste – Parfaite pour communications critiques.", images: ["images/NX3220_3320.jpg"] },
+    { name: "NX-5000", description: "Radio portable multibande – VHF/UHF/800 MHz – Puissance 5W – Compatible NXDN, DMR, analogique – Écran couleur – Idéale pour utilisateurs multi-réseaux.", images: ["images/NX-5000.jpg"] },
+    { name: "NX700_800", description: "Radio mobile NEXEDGE – VHF/UHF – Puissance 50W – 512 canaux – Résistance MIL-STD – Idéale pour véhicules d'urgence.", images: ["images/NX700_800.jpg"] },
+    { name: "NX-3720", description: "Radio mobile VHF – Puissance 50W – 512 canaux – Compatible NXDN, DMR – GPS intégré – Idéale pour flottes de transport.", images: ["images/NX-3720.jpg"] },
+    { name: "NX-3820", description: "Radio mobile UHF – Puissance 45W – 512 canaux – GPS, Bluetooth – Mêmes caractéristiques que NX-3720 en UHF.", images: ["images/NX-3820.jpg"] },
+    { name: "NXR-710-810", description: "Relais VHF/UHF – Puissance 50W – Compatible analogique/NXDN – Ethernet pour contrôle à distance – Gestion de sites multiples.", images: ["images/NXR-710-810.jpg"] },
+    { name: "NXR-5700_-5800", description: "Relais double bande – VHF/UHF – Puissance 50W – Compatible DMR/NXDN – Conception modulaire – Idéal pour systèmes critiques.", images: ["images/NXR-5700_-5800.jpg"] }
+  ]},
+  "Motorola": { models: [
+    { name: "DP-2000", description: "Radio portable DMR – Bande UHF/VHF – Puissance 5W – Écran couleur – 256 canaux – Résistance IP67 – Idéale pour hôtels, industries.", images: ["images/DP-2000.jpg"] },
+    { name: "DP-4000-EX", description: "Radio portable DMR antidéflagrante – Bande UHF/VHF – Puissance 4W – Certifié ATEX Zone 1/21 – Idéale pour industries pétrochimiques, mines.", images: ["images/DP-4000-EX.jpg"] },
+    { name: "DP-4800 / DP-4801 ", description: "Radio portable DMR haut de gamme – Bande UHF/VHF – Puissance 5W – GPS, Bluetooth, Wifi – Écran couleur 2,4” – Idéale pour utilisateurs intensifs.", images: ["images/DP-4800.jpg"] },
+    { name: "DM-4000e", description: "Radio mobile DMR – Bande UHF/VHF – Puissance 25W – 1000 canaux – Écran monochrome – Idéale pour véhicules de flotte.", images: ["images/DM-4000e.jpg"] },
+    { name: "DM1400_1600", description: "Radio mobile analogique/DMR – Bande VHF/UHF – Puissance 50W – 256 canaux – Idéale pour petites flottes, commerces.", images: ["images/DM1400_1600.jpg"] },
+    { name: "SLR-5500", description: "Relais DMR compact – Bande UHF/VHF – Puissance 40W – Double slots – Ethernet, IP – Idéal pour couverture intérieure.", images: ["images/SLR-5500.jpg"] },
+    { name: "SLR-8000", description: "Relais DMR haute puissance – Bande UHF/VHF – Puissance 100W – Redondance, double alimentation – Idéal pour grands sites.", images: ["images/SLR-8000.jpg"] }
+  ]},
+  "Barrett": { models: [
+    { name: "PRC-2084", description: "Radio mobile HF tactique – Bande 1,6-30 MHz – Puissance 125W PEP – SDR, ALE – Idéale pour communication longue distance en véhicule.", images: ["images/PRC-2084.jpg"] },
+    { name: "PRC-2092", description: "Radio mobile HF – Bande 1,6-30 MHz – Puissance 125W – Récepteur indépendant – Idéale pour postes fixes ou mobiles.", images: ["images/PRC-2092.jpg"] },
+    { name: "PRC-2080+", description: "Manpack HF – Bande 1,6-30 MHz – Puissance 20W/50W – Batterie interchangeable – Robustesse militaire, idéal pour missions en zone isolée.", images: ["images/PRC-2080+.jpg"] },
+    { name: "PRC-2090", description: "Manpack HF – Bande 1,6-30 MHz – Puissance 25W – ALE, chiffrement – Idéal pour forces spéciales.", images: ["images/PRC-2090.jpg"] }
+  ]},
+  "CODAN": { models: [
+    { name: "CODAN-M 6170-HH", description: "Radio portable HF – Bande 1,6-30 MHz – Puissance 20W – Batterie lithium – Idéale pour opérations en régions isolées.", images: ["images/CODAN-M 6170-HH.jpg"] },
+    { name: "CODAN-M-6170-HH", description: "Variante du 6170-HH – mêmes caractéristiques : portable HF 20W, robuste, pour forces de défense.", images: ["images/CODAN-M-6170-HH.jpg"] },
+    { name: "CODAN SENTRY-V 6150", description: "Radio mobile HF – Bande 1,6-30 MHz – Puissance 125W – SDR, ALE – Idéale pour véhicules blindés.", images: ["images/CODAN SENTRY-V 6150.jpg"] },
+    { name: "CODAN-2110M_Manpack", description: "Manpack HF – Puissance 20W/50W – Bande 1,6-30 MHz – Conception modulaire – Idéal pour missions de longue durée.", images: ["images/CODAN-2110M_Manpack.jpg"] },
+    { name: "CODAN-H 6120-BM", description: "Manpack HF léger – Puissance 20W – Bande 1,6-30 MHz – Batterie au lithium – Idéal pour patrouilles.", images: ["images/CODAN-H 6120-BM.jpg"] }
+  ]},
+  "DATRON": {models: [
+    {name: "HF RT-7700H", description: "Station de base/mobile HF – Bande 1,5-30 MHz – Puissance 125W PEP – SDR, ALE, Ethernet – Idéale pour communication stratégique.", images: ["images/HF RT-7700H.jpg"] },
+    {name: "HF Manpack PRC-7700H", description: "Manpack HF – Bande 1,5-30 MHz – Puissance 25W PEP – Certifié MIL-STD-810G – ALE intégré – Idéal pour forces terrestres.", images: ["images/HF Manpack PRC-7700H.jpg"]},
+    {name: "DATRON-MT3100", description: "Support mobile pour HH3100 – Permet adaptation véhicule avec ampli 50W – Recharge batterie, jerk‑and‑run – Idéal pour forces motorisées.", images: ["images/DATRON-MT3100.jpg"] },
+    {name: "Datron-HH7700", description: "Radio portable VHF tactique – Bande 30-88 MHz – Puissance 5W – FM – Poids 445g – Idéale pour communications de proximité.", images: ["images/Datron-HH7700.jpg"] },
+    {name: "Datron-HH3100", description: "Radio portable multibande SDR – Bande 30-136 MHz (A) ou 30-512 MHz (M) – Puissance 5W – Certifié MIL-STD-810G – Mode AM air-sol.", images: ["images/Datron-HH3100.jpg"] }
+  ]},
+  "Harris": { models: [
+    { name: "AN-PRC-163", description: "Radio portable tactique multibande – Bande 30-512 MHz – Puissance 10W – Résistance militaire – Idéale pour forces spéciales.", images: ["images/AN-PRC-163.jpg"] },
+    { name: "PRC-152A", description: "Radio portable tactique – Bande 30-512 MHz – Puissance 10W – SDR, GPS, crypto – Référence OTAN.", images: ["images/PRC-152A.jpg"] },
+    { name: "300M-V150", description: "Radio mobile tactique – Bande VHF/UHF – Puissance 50W – Idéale pour blindés – Robustesse extrême.", images: ["images/300M-V150.jpg"] },
+    { name: "RF-7800M-V150", description: "Radio mobile tactique – Bande VHF/UHF – Puissance 50W – Chiffrement, saut de fréquence – Idéale pour véhicules de combat.", images: ["images/RF-7800M-V150.jpg"] }
+  ]},
+  "Balise": { models: [
+    { name: "DB-5000", description: "Balise de détresse maritime – GPS intégré – Émet sur 406 MHz et 121,5 MHz – Autonomie 48h – Certifiée COSPAS-SARSAT.", images: ["images/DB-5000.jpg"] },
+    { name: "Q PF6 STD", description: "Balise maritime de détresse – Émet sur 406 MHz – GPS – Flottante, activée automatiquement – Idéale pour navires de commerce.", images: ["images/Q PF6 STD.jpg"] }
+  ]},
+  "AIS": { models: [
+    { name: "FA-170", description: "Récepteur AIS – Affichage des navires jusqu'à 200 cibles – Interface NMEA 0183 – Idéal pour navigation côtière.", images: ["images/FA-170.jpg"] },
+    { name: "FURUNO-FA-150", description: "Transpondeur AIS Classe B – GPS intégré – Puissance VHF 2W – Idéal pour plaisance et petits navires professionnels.", images: ["images/FURUNO-FA-150.jpg"] },
+    { name: "MA-510 TR", description: "Transpondeur AIS Classe B – ICOM – GPS intégré – Écran LCD – Idéal pour la sécurité en mer.", images: ["images/MA-510 TR.jpg"] }
+  ]},
+  "Signalisation - Maritime": { models: [
+    { name: "Radar-M860", description: "Lanterne marine LED haute intensité – Portée jusqu'à 10 milles – Synchronisation GPS – Idéale pour balisage de chenal.", images: ["images/Dispositif-radar-M850-_-M860--.jpg"] },
+    { name: "LED-350-HIW", description: "Lanterne d'aide à la navigation – LED 360° – Portée 3-5 milles – Faible consommation – Idéale pour bouées.", images: ["images/LED-350-HIW.jpg"] },
+    { name: "LO-200", description: "Lanterne de direction maritime – Haute intensité – Idéale pour balisage de passes.", images: ["images/LO-200.jpg"] },
+    { name: "LS-100", description: "Graveur laser CO2 – Non maritime (produit industriel) – Intensité laser 100W – Idéal pour marquage de pièces.", images: ["images/LS-100.jpg"] }
+  ]},
+  "Radars": { models: [
+    { name: "M1815", description: "Radar maritime Furuno – Bande X, puissance 4 kW – Portée 36 milles – Idéal pour petits navires.", images: ["images/M1815.jpg"] },
+    { name: "M1835", description: "Radar maritime Furuno – Bande X, puissance 6 kW – Portée 48 milles – Fonction MARPA – Idéal pour pêche et commerce.", images: ["images/M1835.jpg"] }
+  ]},
+  "Drones": { models: [
+    { name: "Bayrakar TB2", description: "Drone tactique MALE – Endurance >24h – Plafond 25 000 ft – Charge utile 150 kg – Idéal pour reconnaissance et combat.", images: ["images/Drone Tactique  Bayrakar TB2.jpg"] },
+    { name: "Milkor MA-380", description: "UAS tactique – Endurance 20h – Charge utile 50 kg – Radar SAR/GMTI – Idéal pour surveillance maritime.", images: ["images/Milkor MA-380.jpg", "images/MILKOR-MA-380.jpg"] },
+    { name: "Milkor_380_UAV", description: "Drone MALE nouvelle génération – Endurance 30h – Masse 1500 kg – 5 points d'emport – Idéal pour combat.", images: ["images/Milkor_380_UAV.jpg"] }
+  ]},
+   "AIS Aérien": { models: [
+    { name: "AIS FT-8800 CNFT", description: "Transpondeur AIS Classe A – Écran 6 pouces – VHF, DSC, GPS intégré – Idéal pour grands navires.", images: ["images/AIS FT-8800 CNFT.jpg"] },
+    { name: "AIS UAIS FT-8800", description: "Transpondeur AIS Classe A – Triple récepteur – Échange MMSI, position, cap – Idéal pour prévention abordage.", images: ["images/AIS UAIS FT-8800.jpg"] },
+    { name: "AIS VDL 6000-CNS", description: "Transpondeur AIS aéroporté – Pour recherche et sauvetage – Détection navires – Idéal pour surveillance côtière.", images: ["images/AIS VDL 6000-CNS.jpg"] }
+  ]},
+  "Radar Aérien": { models: [
+    { name: "RDR-7000", description: "Radar météorologique aéroporté – Bande X, portée 320 nm – Détection turbulences, cisaillement – Idéal pour aviation.", images: ["images/Radar de détection RDR-7000.jpg"] },
+    { name: "PrecISR", description: "Radar de surveillance AESA – Bande X – Portée 370 km – Modes SAR, GMTI – Idéal pour missions ISR.", images: ["images/Radar de Surveillance PrecISR.jpg"] },
+    { name: "PICOSAR", description: "Radar AESA compact – Pour drones – SAR et GMTI – Idéal pour reconnaissance tout-temps.", images: ["images/Radar Météorologie PICOSAR.jpg"] },
+    { name: "RA-6500", description: "Radioaltimètre – Hauteur -20 à 2500 ft – Précision 0,5 m – Idéal pour phases d'approche.", images: ["images/Radioaltimètre RA-6500.jpg"] }
+  ]},
+  "GPS": { models: [
+    { name: "Marin-922", description: "GPS marin – Écran 9 pouces – Cartes vectorielles – Sondeur intégré – Idéal pour navigation côtière.", images: ["images/Marin-922.jpg"] },
+    { name: "Marin-722 XS", description: "GPS marin écran tactile 7 pouces – Cartes HD – Wi-Fi, partage de données – Idéal pour plaisance.", images: ["images/Marin-722 XS.jpg"] },
+    { name: "Marin_721", description: "GPS marin compact – Écran 7 pouces – Sondeur – Idéal pour petites embarcations.", images: ["images/Marin_721.jpg"] }
+  ]},
+  "DGPS": { models: [
+    { name: "DGPS Hi Target V 30 Plus", description: "Récepteur GNSS 800 canaux – GPS, GLONASS, Galileo – RTK précision centimétrique – Idéal pour levés topographiques.", images: ["images/DGPS Hi Target V 30 Plus.jpg"] },
+    { name: "DGPS Hi-Target-Rtk-V200", description: "Récepteur GNSS RTK – Poids 0,8 kg – IMU intégrée – Connexion NFC – Idéal pour topographie.", images: ["images/DGPS Hi-Target-Rtk-V200.jpg"] }
+  ]},
+  "GPS Garmin": { models: [
+    { name: "Garmin 66MT-S", description: "GPS portable tout-terrain – Écran 3 pouces – Cartes topo, points d'eau – Autonomie 20h – Idéal pour randonnée.", images: ["images/Garmin 66MT-S.jpg"] },
+    { name: "GPS MAP 64s", description: "GPS robuste – GPS+GLONASS – Altimètre barométrique, boussole 3 axes – Idéal pour professionnels outdoor.", images: ["images/GPS MAP 64s.jpg"] }
+  ]},
+  "Lits Médicaux": { models: [
+    { name: "Lit Cardiaque Electrique", description: "Lit médical électrique pour soins cardiaques – Réglages moteur – Hauteur variable – Idéal pour USIC.", images: ["images/Lit Cardiaque Electrique.jpg"] },
+    { name: "Lit de Réanimation", description: "Lit de réanimation – Positions multiples – Accès radiologique – Idéal pour services de soins intensifs.", images: ["images/Lit de Réanimation.jpg"] },
+    { name: "Lit de Soins Intensifs", description: "Lit pour soins critiques – Réglages électriques – Barrières escamotables – Idéal pour USI.", images: ["images/Lit de Soins Intensifs.jpg"] },
+    { name: "Lit Médical Multifonction", description: "Lit d’hôpital polyvalent – Manuelle ou électrique – Idéal pour services généraux.", images: ["images/Lit Médical Multifonction.jpg"] }
+  ]},
+  "Scanners Médicaux": { models: [
+    { name: "Scanner Aquillion", description: "Scanner 64/128 coupes – Imagerie haute résolution – Réduction de dose – Idéal pour diagnostic polyvalent.", images: ["images/Scanner Aquillion.jpg"] },
+    { name: "Scanner Thoracique", description: "Scanner dédié thorax – Faible dose – Idéal pour dépistage et suivi pulmonaire.", images: ["images/Scanner Thoracique.jpg"] }
+  ]},
+  // Identification
+  "Vidéoconférence": { models: [
+    { name: "Hikvision DS-UVC-P22", description: "Caméra de visioconférence USB – Full HD – Plug-and-play – Idéale pour petites salles.", images: ["images/Hikvision DS-UVC-P22.jpg"] },
+    { name: "Hikvision DS-UVC-P28", description: "Caméra de visioconférence USB – Champ de vision élargi – Full HD – Idéale pour salles moyennes.", images: ["images/Hikvision DS-UVC-P28.jpg"] },
+    { name: "Kit de Vidéoconférence Logitech", description: "Kit tout-en-un – Caméra, micro, haut-parleurs – USB – Idéal pour réunions professionnelles.", images: ["images/Kit de Vidéoconférence Logitech.jpg"] }
+  ]},
+  "Controle D'accès": { models: [
+    { name: "Centrale de Contrôle d’Accès DS-K2604T", description: "Centrale 4 portes – TCP/IP, Wiegand – Gestion centralisée – Idéale pour sites sécurisés.", images: ["images/Centrale de Controle D'accès DS-K2604T.jpg"] },
+    { name: "DS-K1A8503MF", description: "Terminal biométrique facial – Reconnaissance 3D – Anti-spoofing – Idéal pour accès haut niveau.", images: ["images/DS-K1A8503MF.jpg"] },
+    { name: "Kit de Contrôle d’Accès Autonome", description: "Kit prêt-à-poser – Pour porte unique – Badges, codes – Idéal pour petites structures.", images: ["images/kit-Controle-Acces-Autonome.jpg"] },
+    { name: "Pointeuse + Contrôle d’Accès DS-K1T201AM", description: "Terminal pointeuse + accès – Doigt, carte, code – Idéal pour PME.", images: ["images/Pointeuse+Controle-d'acces DS-K1T201AM (2).jpg"] },
+    { name: "Pointeuse+Controle-d'acces DS-K1T343EFX", description: "Terminal biométrique multifonction – Reconnaissance faciale, empreinte – Idéal pour entreprise.", images: ["images/Pointeuse+Controle-d'acces DS-K1T343EFX.jpg"] }
+  ]},
+  "Polycom": { models: [
+    { name: "Polycom VVX410 IP", description: "Téléphone IP professionnel – 4 lignes – Ethernet, PoE – Idéal pour standardistes.", images: ["images/Polycom VVX410 -IP.jpg"] },
+    { name: "Polycom VVX-410 IP", description: "Même caractéristiques que VVX410 – Écran couleur, qualité HD.", images: ["images/Polycom VVX-410 IP.jpg"] },
+    { name: "Polycom HDX 7000", description: "Système de visioconférence HD – Jusqu'à 1080p – Microphones intégrés – Idéal pour salles de réunion.", images: ["images/Polycom-HDX 7000 (1).jpg"] }
+  ]},
+  "AudioConférence": { models: [
+    { name: "Alcatel Conférence 1550 IP", description: "Téléphone de conférence IP – Microphone omnidirectionnel – Idéal pour réunions.", images: ["images/Alcaltel de Conférence 1550 IP.jpg"] },
+    { name: "Alcatel Conference 1500", description: "Téléphone de conférence analogique – Haut-parleur puissant – Idéal pour petites salles.", images: ["images/Alcatel_Conference1500.jpg"] }
+  ]},
+  "Videosurveillance": { models: [
+    // Caméras
+    { name: "HIK DS-2XC6225G0-L", type: "camera", description: "Caméra de surveillance réseau conçue pour les environnements industriels et extérieurs exigeants. Résolution haute définition avec technologie ColorVu, permettant une image couleur 24h/24 même en très faible luminosité. Boîtier renforcé, résistance aux conditions extrêmes.", images: ["images/HIK DS-2XC6225G0-L.jpg"] },
+    { name: "HIK-DS-2XE6825G0-IZHS-8", type: "camera", description: "Caméra réseau antidéflagrante motorisée (PTZ) pour sites à haut risque (industries pétrochimiques, portuaires). Zoom optique puissant, excellente sensibilité basse lumière, conception certifiée pour atmosphères explosives.", images: ["images/HIK-DS-2XE6825G0-IZHS-8.jpg"] },
+    { name: "Hikvision DS-2CD6D54G2-IZHS", type: "camera", description: "Caméra multi-capteurs haute performance, couverture panoramique étendue. Résolution élevée, zoom motorisé, analyse intelligente (détection d’intrusion, franchissement de ligne). Idéale pour grandes zones ouvertes.", images: ["images/Hikvision DS-2CD6D54G2-IZHS.jpg"] },
+    { name: "Hikvision DS-2CD2955G0-ISU", type: "camera", description: "Caméra dôme fisheye, vision panoramique à 180° ou 360°. Couvre de larges espaces avec un seul appareil, audio bidirectionnel, analyses intelligentes. Idéale pour commerces, bureaux, espaces publics.", images: ["images/Hikvision DS-2CD2955G0-ISU.jpg"] },
+    { name: "Hikvision DS-2cd6984G0-IHS", type: "camera", description: "Caméra réseau multi-objectifs très haute résolution, sans angle mort. Combine plusieurs capteurs synchronisés, image panoramique fluide, fonctions avancées de vidéosurveillance intelligente.", images: ["images/Hikvision DS-2cd6984G0-IHS.jpg"] },
+    { name: "Hikvision DS-2XC6284G0-L", type: "camera", description: "Caméra réseau industrielle haute résolution avec technologie ColorVu pour image couleur permanente. Résistance aux intempéries, chocs, variations de température. Idéale pour infrastructures critiques.", images: ["images/Hikvision DS-2XC6284G0-L.jpg"] },
+    { name: "Hikvision DS-2TD2537T-10-Q", type: "camera", description: "Caméra thermique réseau combinant imagerie thermique et optique pour détection précise des intrusions, même dans l’obscurité totale ou conditions météorologiques difficiles. Protection périmétrique, détection précoce d’incendies.", images: ["images/Hivision DS-2TD2537T-10-Q.jpg"] },
+    { name: "DH-H2C", type: "camera", description: "La DH-H2C est une caméra intérieure intelligente 2 MP conçue pour une surveillance fluide et complète sans angle mort grâce à sa rotation horizontale et verticale.Points forts Résolution 1080p Full HD Rotation motorisée 360° Compression H.265 / H.264  Détection humaine intelligente Vision nocturne infrarouge Microphone + haut-parleur intégrés (audio bidirectionnel) Connexion Wi-Fi Support carte MicroSD Surveillance à distance via application mobile.", images: ["images/DH-H2C.jpg"] },
+    { name: "DH-IPC-H3A", type: "camera", description: "Modèle polyvalent destiné aux installations professionnelles ou résidentielles.Caractéristiques principales Résolution HD / Full HD (2 MP ou 4 MP selon version) Technologie WDR (Wide Dynamic Range) Mode Jour / Nuit automatique Alimentation PoE Compatible ONVIF", images: ["images/DH-IPC-H3A.jpg"] },
+    { name: "DH-IPC-HDW140SP", type: "camera", description: "Caméra compacte idéale pour surveillance discrète en intérieur ou extérieur protégé.SpécificationsRésolution 2 MP Full HD Vision nocturne IR Mode jour/nuit automatique Compatible PoE Support ONVIF", images: ["images/DH-IPC-HDW140SP.jpg"] },
+    { name: "DH-IPC-HFW2649S-S-IL-0280B", type: "camera", description: "Caméra haute performance conçue pour la surveillance extérieure avancée.Points clés Résolution 6 MP ultra haute définition Technologie Smart Dual Light (IR + lumière blanche) Portée jusqu’à 30 m Détection intelligente personnes / véhicules (SMD Plus) Micro intégré Boîtier IP67 étanche PoE + MicroSD", images: ["images/DH-IPC-HFW2649S-S-IL-0280B.jpg"] },
+    { name: "IPC2124SSADF28KM", type: "camera", description: "Caméra réseau Full HD adaptée aux installations standards.Caractéristiques Résolution 2 MP Vision nocturne IR WDR pour meilleure gestion du contraste Alimentation PoE ou 12V Compatible ONVIF Support MicroSD.", images: ["images/IPC2124SSADF28KM.jpg"] },
+    { name: "IPC9312LFW-AF28-2X4", type: "camera", description: "Caméra innovante combinant vue panoramique et zoom motorisé.Fonctionnalités Double capteur 2 MP Zoom optique 4×Vue large +, zoom détaillé WDR 120 dB Vision nocturne IR Micro intégré Fonction PTZ (Pan / Tilt / Zoom) PoE+.", images: ["images/IPC9312LFW-AF28-2X4.jpg"] },
+    { name: "UHO-P14-M3F4D", type: "camera", description: "Modèle de caméra IP destiné aux installations standards.Caractéristiques générales (selon configuration)Résolution 2–4 MP.Vision nocturne IR.Format Dôme ou Bullet,compatible PoE - utilisation intérieure ou extérieure.", images: ["images/UHO-P14-M3F4D.jpg"] },
+    // NVR
+    { name: "NVR DS-7732NXI-K4", type: "nvr", description: "Enregistreur vidéo réseau professionnel prenant en charge jusqu’à 32 caméras IP. Fonctions avancées d’IA (reconnaissance faciale, protection périmétrique, recherche intelligente). Compatible avec disques de grande capacité, stockage sécurisé et gestion centralisée.", images: ["images/NVR DS-7732NXI-K4.jpg"] },
+    { name: "NVR DS-7616NI-Q2", type: "nvr", description: "Enregistreur réseau 16 canaux, support H.265, jusqu'à 80Mbps, 2 baies pour disques durs. Gestion à distance via application, idéal pour systèmes de surveillance de taille moyenne.", images: ["images/NVR DS-7616NI-Q2.jpg"] },
+    { name: "DH-NVR4232-4KS2-32", type: "nvr", description: "Solution centrale pour systèmes de vidéosurveillance IP.Spécifications:jusqu’à 32 canaux IP,16 ports PoE intégrés,compression H.265 / H.264.Support disques durs SATA.Compatible ONVIF multi-marques.", images: ["images/DH-NVR4232-4KS2-32.jpg"] },
+    { name: "NVRR504-32B-P16", type: "nvr", description: "Enregistreur haute performance pour installations professionnelles.Caractéristiques clés:support 32 caméras IP,bande passante élevée (~200 Mbps),compression Smart H.265+,support résolution jusqu’à 8 MPSorties HDMI + VGA simultanées,décodage 4K-Accès à distance via mobile et PC.", images: ["images/NVRR504-32B-P16.jpg"] }
+
+  ]}
+};
+
+// Sous-catégories qui affichent des marques cliquables → modèles avec images
+const BRAND_SUBCAT_MAP = {
+  'radio-pro': ['Belfone', 'Hytera', 'ICOM', 'Kenwood', 'Motorola'],
+  'radio-tac': ['Barrett', 'CODAN', 'DATRON', 'Harris'],
+  'nav-air': ['AIS Aérien', 'Radar Aérien', 'Drones'],
+  'nav-maritime': ['Balise', 'AIS', 'Radars', 'GPS', 'Signalisation - Maritime'],
+  'nav-terre': ['DGPS', 'GPS Garmin'],
+  'med-all': ['Lits Médicaux', 'Scanners Médicaux'],
+  'id-all': ['Vidéoconférence', "Controle D'accès", 'Polycom', 'AudioConférence', 'Videosurveillance']
+};
+
+let currentView = 'catalogue';
+let currentBrandBack = null; // { catId, subId } pour le bouton Retour
+
+// ==================== CATALOGUE AVEC PRODUITS (identique) ====================
+const CATALOGUE = [
+  {
+    id: 'radiocoms',
+    label: 'RadioCommunications',
+    icon: 'fa-broadcast-tower',
+    subcategories: [
+      { id: 'radio-pro', label: 'Professionnelle', products: [] },
+      { id: 'radio-tac', label: 'Tactique (Militaire)', products: [] }
+    ]
+  },
+  {
+    id: 'navigation',
+    label: 'RadioNavigation',
+    icon: 'fa-compass',
+    subcategories: [
+      { id: 'nav-air', label: 'Navigation Aérienne', products: [] },
+      { id: 'nav-maritime', label: 'Navigation Maritime', products: [] },
+      { id: 'nav-terre', label: 'Navigation Terrestre', products: [] }
+    ]
+  },
+  {
+    id: 'effets',
+    label: "Effets d'Habillement Militaires",
+    icon: 'fa-shield-alt',
+    subcategories: [
+      {
+        id: 'effets-all',
+        label: 'Équipements & Tenues',
+        products: [
+          { name: 'Tenues Militaires / Combat et Camouflage', description: "Tenues de combat multicam, treillis résistants, adaptées aux environnements chauds ou tempérés. Disponibles en plusieurs motifs (OD, woodland, desert).", images: ["images/Tenue de Camouflage Tactique (1).jpg", "images/Tenue de Camouflage Tactique (2).jpg", "images/Tenue de Camouflage Tactique (3).jpg", "images/Tenue de Combat Tactique (1).jpg", "images/Tenue de Combat Tactique (2).jpg", "images/Tenue de Combat Tactique (3).jpg", "images/Tenue de Combat Tactique (4).jpg"] },
+          { name: 'Rangers', description: "Chaussures de combat robustes, semelles antidérapantes, tige montante protégeant la cheville. Cuir et nylon respirant.", images: ["images/Rangers Tactique (1).jpg", "images/Rangers Tactique (2).jpg", "images/Rangers Tactique (3).jpg", "images/Rangers Tactique (4).jpg", "images/Rangers Tactique (5).jpg"] },
+          { name: 'Casques Tactiques', description: "Casques balistiques légers, compatible avec rails NVG, protections auditives et visières. Niveaux IIIA.", images: ["images/casque tactique (1).jpg", "images/casque tactique (2).jpg", "images/casque tactique (3).jpg", "images/casque tactique (4).jpg"] },
+          { name: 'Gilets Tactiques', description: "Gilets pare-balles modulaires, plaques balistiques optionnelles, système MOLLE pour accessoires.", images: ["images/gillet Tactique (1).jpg", "images/gillet Tactique (2).jpg", "images/gillet Tactique (3).jpg"] },
+          { name: 'Genouillières Militaires', description: "Protections renforcées, coques rigides, maintien élastique, adaptées aux progressions rampées.", images: ["images/Genouilleres-tactiques(1).jpg", "images/Genouilleres-tactiques(2).jpg", "images/Genouilleres-tactiques(3).jpg", "images/Genouilleres-tactiques(4).jpg"] },
+          { name: 'Tentes Militaires', description: "Tentes de campagne, toile imperméable, montage rapide, capacité 2 à 10 hommes selon modèle.", images: ["images/Tente Militaire (1).jpg", "images/Tente Militaire (2).jpg", "images/Tente Militaire.jpg", "images/Tente-militaire.jpg"] }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'securite',
+    label: 'Matériel de Sécurité',
+    icon: 'fa-lock',
+    subcategories: [
+      {
+        id: 'sec-all',
+        label: 'Équipements de Sécurité',
+        products: [
+          { name: 'Matraques Télescopiques/ Avec Garde acier', description: "Matraque télescopique en acier, poignée antidérapante, garde acier pour protection de la main. Longueur déployée 55 cm.", images: ["images/matraque-telescopique-avec-garde-acier.jpg", "images/Mtraque telescopique.jpg"] },
+          { name: 'Détecteurs de Métaux', description: "Détecteur portatif haute sensibilité, alarme sonore et vibratoire, pile 9V. Idéal pour contrôle d'accès.", images: ["images/Détecteur de Métaux Garrett (1).jpg", "images/Détecteur de Métaux Garrett (2).jpg"] },
+          { name: "Miroirs d'Inspection", description: "Miroir télescopique avec éclairage LED intégré, angle réglable. Permet d'inspecter sous les véhicules.", images: ["images/miroir-d-inspection Télécospique-a-eclairage-integre.jpg", "images/miroir-d-inspection-a-eclairage-integre.jpg"] },
+          { name: 'Groupes Électrogènes', description: "Groupe électrogène diesel Perkins 300 kVA, armoire de commande, réservoir grande capacité. Idéal pour sites isolés.", images: ["images/Groupe Electrgène Perkins 300 KVA (1).jpg", "images/Groupe Electrgène Perkins 300 KVA (2).jpg", "images/Groupe Electrgène Perkins 300 KVA (3).jpg", "images/Groupe Electrogène SDMO-300 KVA.jpg", "images/Groupe Electrogène SDMO 300 KVA.jpg"] },
+          { name: 'Stabilisateurs Triphasés', description: "Stabilisateur de tension 300 kVA à haute vitesse, variateur triphasé 400 V, régulateur de tension industriel : protection contre les surtensions et régulation automatique. Idéal pour équipements sensibles.", images: ["images/Stabilisateur Triphasé 300 KVA (1).jpg", "images/Stabilisateur Triphasé 300 KVA (2).jpg", "images/Stabilisateur Triphasé 300 KVA (3).jpg", "images/Stabilisateur Triphasé 300 KVA (4).jpg", "images/Stabilisateur Triphasé 300 KVA (5).jpg"] },
+          { name: 'Vehicules de Combat', description: "Véhicule blindé 4x4, protection balistique STANAG 4569 niveau 2, tourelleau téléopéré. Idéal pour patrouille.", images: ["images/Véhicule de Combat.jpg", "images/Véhicule de Combat(1).jpg", "images/Véhicule de Combat(2).jpg", "images/Véhicule de Combat(3).jpg", "images/Véhicule de Combat(4).jpg"] },
+          { name: 'Vehicules Anti-Incendie', description: "Véhicule d'incendie, citerne 6000L, pompe à haut débit, équipé de lances et extincteurs.", images: ["images/Véhicule Anti-Incendie (1).jpg", "images/Véhicule Anti-Incendie (2).jpg", "images/Véhicule Anti-Incendie (3).jpg", "images/Véhicule Anti-Incendie (4).jpg", "images/Véhicule Anti-Incendie (5).jpg"] },
+          { name: 'Vehicules de Transport de Troupes', description: "Véhicule blindé de transport, capacité 10 soldats, protection anti-mines, toit ouvrant.", images: ["images/Véhucule de transport de Troupe.jpg", "images/Véhucule de transport de Troupe(1).jpg", "images/Véhucule de transport de Troupe(2).jpg"] },
+          { name: 'Téléphones Satellitaires Thuraya', description: "Téléphone satellite Thuraya XT-LITE : couverture mondiale, batterie longue durée, GPS intégré. Modèle XT-PRO plus robuste.", images: ["images/Thuraya XT-LITE.jpg", "images/Thuraya-XT-PRO.jpg"] },
+          { name: 'Portiques & Scanners Rayons X', description: "Portique de sécurité à rayons X pour bagages, générateur 160 kV, écran haute résolution. Idéal pour aéroports.", images: ["images/Portique à rayon X-S37.jpg", "images/Portique a-rayons-x-6006810-1.jpg", "images/Portique Rayons-X-XS-GiG.jpg"] },
+          { name: "Système de Détection d'Incendie", description: "Centrale de détection incendie, détecteurs de fumée et chaleur, alarme sonore, report téléphonique.", images: ["images/Système de détection incendie (1).jpg", "images/Système de détection incendie (2).jpg", "images/Système de détection incendie (3).jpg"] },
+          { name: 'Extincteurs', description: "Extincteurs à eau, CO2, poudre, portatifs ou mobiles. Conformes normes EN3, pression permanente.", images: ["images/Extincteur-a╠Ç-EAU-MOBILE-STANDARD-300x300.jpg", "images/Extincteur-CO2-LPCB-PORTABLE-300x300.jpg", "images/Extincteur-de-Poudre-se╠Çche-mobile-standard-300x300.jpg", "images/Extincteur-de-Poudre-se╠Çche-portable-avec-cartouche-Standard-300x300.jpg", "images/Extincteur-de-Poudre-se╠Çche-portable-LPCB-300x300.jpg", "images/Extincteur-de-Poudre-se╠Çche-portable-ΓÇô-Standard-300x300.jpg", "images/Extincteur-PORTABLE-A-EAU-STANDARD-300x300.jpg"] },
+          { name: 'Pyromètres Laser', description: "Pyromètre infrarouge laser, plage -50°C à 1000°C, rapport distance/spot 30:1. Idéal pour mesures sans contact.", images: ["images/Pyromètre Laser(2).jpg", "images/Pyromètre Laser.jpg"] }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'identification',
+    label: 'Identification',
+    icon: 'fa-id-card',
+    subcategories: [
+      {
+        id: 'id-all',
+        label: "Systèmes & Équipements d'Identification",
+        products: []
+      }
+    ]
+  },
+  {
+    id: 'medical',
+    label: 'Équipements Médicaux',
+    icon: 'fa-heartbeat',
+    subcategories: [
+      {
+        id: 'med-all',
+        label: 'Matériel Médical',
+        products: [
+          { name: 'Ambulances', description: "Ambulances de secours et de soins, équipées de brancard électrique, défibrillateur, respirateur. Carrosserie médicalisée.", images: ["images/Ambulance (1).jpg", "images/Ambulance (2).jpg", "images/Ambulance (3).jpg"] },
+          { name: 'Vehicules de première intervention', description: "Véhicules légers d'intervention médicale rapide, équipés de premiers secours, feux prioritaires. Idéaux pour SMUR.", images: ["images/Vehicule-de premiere intervention (1).jpg", "images/Vehicule-de premiere intervention (2).jpg", "images/Vehicule-de premiere intervention (3).jpg"] }
+        ]
+      }
+    ]
+  }
+];
+
+let currentProduct = null;
+
+// ==================== FONCTIONS POUR LE CARROUSEL ====================
+let currentCarouselIndex = 0;
+let carouselImages = [];
+
+function initCarousel(images) {
+  carouselImages = images || [];
+  currentCarouselIndex = 0;
+  const mainImg = document.getElementById('carousel-main-img');
+  const thumbContainer = document.getElementById('carouselThumbnails');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+
+  if (!carouselImages.length) {
+    mainImg.src = '';
+    mainImg.alt = 'Pas d\'image';
+    thumbContainer.innerHTML = '';
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+    return;
+  }
+
+  mainImg.src = carouselImages[0];
+  mainImg.alt = 'Image produit';
+
+  thumbContainer.innerHTML = '';
+  carouselImages.forEach((src, idx) => {
+    const thumb = document.createElement('div');
+    thumb.className = 'carousel-thumb' + (idx === 0 ? ' active' : '');
+    thumb.innerHTML = `<img src="${src}" alt="miniature" onerror="this.parentElement.style.display='none'">`;
+    thumb.addEventListener('click', () => {
+      currentCarouselIndex = idx;
+      updateCarousel();
+    });
+    thumbContainer.appendChild(thumb);
+  });
+
+  const updateCarousel = () => {
+    mainImg.src = carouselImages[currentCarouselIndex];
+    document.querySelectorAll('.carousel-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === currentCarouselIndex);
+    });
+  };
+
+  prevBtn.onclick = (e) => {
+    e.stopPropagation();
+    if (carouselImages.length > 1) {
+      currentCarouselIndex = (currentCarouselIndex - 1 + carouselImages.length) % carouselImages.length;
+      updateCarousel();
+    }
+  };
+  nextBtn.onclick = (e) => {
+    e.stopPropagation();
+    if (carouselImages.length > 1) {
+      currentCarouselIndex = (currentCarouselIndex + 1) % carouselImages.length;
+      updateCarousel();
+    }
+  };
+
+  if (carouselImages.length <= 1) {
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+  } else {
+    prevBtn.style.display = 'flex';
+    nextBtn.style.display = 'flex';
+  }
+}
+
+// ==================== OUVERTURE MODALE ====================
+function openProductModal(catId, subId, index) {
+  const cat = CATALOGUE.find(c => c.id === catId);
+  const sub = cat?.subcategories.find(s => s.id === subId);
+  const product = sub?.products[index];
+  if (!cat || !sub || !product) return;
+  currentProduct = product;
+
+  document.getElementById('pmCategory').textContent = `${cat.label} · ${sub.label}`;
+  document.getElementById('pmName').textContent = product.name;
+  document.getElementById('pmDesc').textContent = product.description || "Description détaillée à préciser à partir du descriptif PDF.";
+
+  const mail = 'info@brainstormgroup.com';
+  document.getElementById('pmInfoBtn').href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Infos et devis - ' + product.name);
+
+  const images = product.images || [];
+  initCarousel(images);
+
+  document.getElementById('productModal').classList.add('open');
+}
+
+function openProductModalFromModel(brandName, model) {
+  if (!model || !model.name) return;
+  document.getElementById('pmCategory').textContent = brandName;
+  document.getElementById('pmName').textContent = model.name;
+  document.getElementById('pmDesc').textContent = model.description || '';
+
+  const mail = 'info@brainstormgroup.com';
+  document.getElementById('pmInfoBtn').href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Infos et devis - ' + model.name + ' (' + brandName + ')');
+
+  const images = model.images || [];
+  initCarousel(images);
+
+  document.getElementById('productModal').classList.add('open');
+}
+
+function closeProductModal() {
+  document.getElementById('productModal').classList.remove('open');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeProductModal();
+});
+
+// ==================== FONCTIONS DE RENDU ====================
+function getSubBlockCount(sub, catId) {
+  const brands = BRAND_SUBCAT_MAP[sub.id];
+  let n = sub.products.length;
+  if (brands) brands.forEach(b => { if (BRANDS_DATA[b]) n += BRANDS_DATA[b].models.length; });
+  return n;
+}
+function getCatCount(cat) {
+  let n = 0;
+  cat.subcategories.forEach(sub => n += getSubBlockCount(sub, cat.id));
+  return n;
+}
+function getTotalCount() {
+  let n = 0;
+  CATALOGUE.forEach(cat => n += getCatCount(cat));
+  return n;
+}
+
+function buildSidebar() {
+  const container = document.getElementById('sidebarCats');
+  const mobileBar = document.getElementById('mobileFilterBar');
+  const total = getTotalCount();
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('sectionCount').textContent = total + ' produits';
+
+  mobileBar.innerHTML = ''; // nettoyer
+  const mAll = document.createElement('button');
+  mAll.className = 'mobile-filter-btn active';
+  mAll.textContent = 'Tout';
+  mAll.dataset.id = 'all';
+  mAll.onclick = () => { showAll(); setMobileActive(mAll); };
+  mobileBar.appendChild(mAll);
+
+  CATALOGUE.forEach(cat => {
+    const div = document.createElement('div');
+    div.className = 'sidebar-cat';
+    div.id = 'scat-' + cat.id;
+    div.innerHTML = `
+      <button class="sidebar-cat-btn" onclick="toggleCat('${cat.id}')">
+        <span><i class="fas ${cat.icon}" style="margin-right:.4rem;font-size:.7rem;opacity:.55;"></i>${cat.label}</span>
+        <i class="fas fa-chevron-right arrow"></i>
+      </button>
+      <div class="sidebar-sub" id="ssub-${cat.id}">
+        ${cat.subcategories.map(sub =>
+          `<button class="sidebar-sub-btn" id="sbtn-${sub.id}" onclick="filterSub('${cat.id}','${sub.id}')">${sub.label}</button>`
+        ).join('')}
+      </div>`;
+    container.appendChild(div);
+
+    const mb = document.createElement('button');
+    mb.className = 'mobile-filter-btn';
+    mb.textContent = cat.label;
+    mb.dataset.id = cat.id;
+    mb.onclick = () => { filterCat(cat.id); setMobileActive(mb); };
+    mobileBar.appendChild(mb);
+  });
+}
+
+function setMobileActive(el) {
+  document.querySelectorAll('.mobile-filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function toggleCat(id) {
+  const el = document.getElementById('scat-' + id);
+  const open = el.classList.contains('open');
+  document.querySelectorAll('.sidebar-cat').forEach(e => e.classList.remove('open'));
+  if (!open) el.classList.add('open');
+}
+
+function clearActive() {
+  document.getElementById('allBtn').classList.remove('active');
+  document.querySelectorAll('.sidebar-cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sidebar-sub-btn').forEach(b => b.classList.remove('active'));
+}
+
+function showAll() {
+  currentView = 'catalogue';
+  currentBrandBack = null;
+  clearActive();
+  document.getElementById('allBtn').classList.add('active');
+  document.getElementById('sectionLabel').textContent = 'Catalogue complet';
+  document.getElementById('sectionTitle').textContent = 'Tous les produits';
+  document.getElementById('sectionCount').textContent = getTotalCount() + ' produits';
+  renderAll();
+}
+
+function filterCat(catId) {
+  currentView = 'catalogue';
+  currentBrandBack = null;
+  clearActive();
+  const cat = CATALOGUE.find(c => c.id === catId);
+  if (!cat) return;
+  const btn = document.querySelector('#scat-' + catId + ' .sidebar-cat-btn');
+  if (btn) btn.classList.add('active');
+  document.getElementById('scat-' + catId).classList.add('open');
+  document.getElementById('sectionLabel').textContent = cat.label;
+  document.getElementById('sectionTitle').textContent = cat.label;
+  document.getElementById('sectionCount').textContent = getCatCount(cat) + ' produits';
+  renderCat(cat);
+}
+
+function filterSub(catId, subId) {
+  currentView = 'catalogue';
+  currentBrandBack = null;
+  clearActive();
+  const cat = CATALOGUE.find(c => c.id === catId);
+  const sub = cat?.subcategories.find(s => s.id === subId);
+  if (!sub) return;
+  const btn = document.querySelector('#scat-' + catId + ' .sidebar-cat-btn');
+  if (btn) btn.classList.add('active');
+  document.getElementById('scat-' + catId).classList.add('open');
+  document.getElementById('sbtn-' + subId)?.classList.add('active');
+  document.getElementById('sectionLabel').textContent = cat.label;
+  document.getElementById('sectionTitle').textContent = sub.label;
+  document.getElementById('sectionCount').textContent = getSubBlockCount(sub, catId) + ' produits';
+  const area = document.getElementById('productsArea');
+  area.innerHTML = '';
+  area.appendChild(buildSubBlock(sub, catId));
+  document.getElementById('emptyState').classList.remove('show');
+}
+
+function renderAll() {
+  const area = document.getElementById('productsArea');
+  area.innerHTML = '';
+  CATALOGUE.forEach(cat => {
+    const block = document.createElement('div');
+    block.className = 'cat-block';
+    block.innerHTML = `<div class="cat-block-header"><h3 class="cat-block-title"><i class="fas ${cat.icon}" style="font-size:1.1rem;color:var(--accent);margin-right:.5rem;opacity:.8;"></i>${cat.label}</h3><div class="cat-block-line"></div></div>`;
+    cat.subcategories.forEach(sub => block.appendChild(buildSubBlock(sub, cat.id)));
+    area.appendChild(block);
+  });
+  document.getElementById('emptyState').classList.remove('show');
+}
+
+function renderCat(cat) {
+  const area = document.getElementById('productsArea');
+  area.innerHTML = '';
+  cat.subcategories.forEach(sub => area.appendChild(buildSubBlock(sub, cat.id)));
+  document.getElementById('emptyState').classList.remove('show');
+}
+
+function showModelsOfBrand(brandName, catId, subId) {
+  currentView = 'models';
+  currentBrandBack = { catId, subId };
+  const area = document.getElementById('productsArea');
+  const cat = CATALOGUE.find(c => c.id === catId);
+  const sub = cat?.subcategories.find(s => s.id === subId);
+  document.getElementById('sectionLabel').textContent = (cat && sub) ? (cat.label + ' · ' + sub.label) : cat?.label || '';
+  document.getElementById('sectionTitle').textContent = brandName;
+  document.getElementById('sectionCount').textContent = (BRANDS_DATA[brandName]?.models?.length || 0) + ' modèles';
+
+  area.innerHTML = '';
+  const header = document.createElement('div');
+  header.className = 'models-view-header';
+  header.innerHTML = '<button type="button" class="back-to-brands"><i class="fas fa-arrow-left"></i> Retour</button><span class="models-view-title">' + brandName + '</span>';
+  header.querySelector('button').onclick = backFromModels;
+  area.appendChild(header);
+
+  // Pour la marque Videosurveillance, on sépare caméras et NVR
+  if (brandName === 'Videosurveillance') {
+    const models = BRANDS_DATA[brandName].models || [];
+    const cameras = models.filter(m => m.type === 'camera');
+    const nvrs = models.filter(m => m.type === 'nvr');
+
+    const renderGrid = (title, items) => {
+      if (items.length === 0) return;
+      const subHeader = document.createElement('div');
+      subHeader.style.margin = '2rem 0 1rem';
+      subHeader.style.fontFamily = "'Cormorant Garamond', serif";
+      subHeader.style.fontSize = '1.8rem';
+      subHeader.style.fontWeight = '600';
+      subHeader.style.color = 'var(--accent)';
+      subHeader.style.borderBottom = '1px solid var(--border)';
+      subHeader.style.paddingBottom = '0.5rem';
+      subHeader.textContent = title;
+      area.appendChild(subHeader);
+
+      const grid = document.createElement('div');
+      grid.className = 'products-grid';
+      items.forEach((model, i) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.style.animationDelay = (i * 0.045) + 's';
+        const imgSrc = (model.images && model.images[0]) || '';
+        card.innerHTML = `
+          <div class="product-image">
+            ${imgSrc ? `<img src="${imgSrc.replace(/\\/g, '/')}" alt="${(model.name || '').replace(/"/g, '&quot;')}" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-image\\'></i></span>'">` : '<span class="icon-placeholder"><i class="fas fa-image"></i></span>'}
+          </div>
+          <div class="product-info">
+            <div class="product-name">${(model.name || '').replace(/</g, '&lt;')}</div>
+          </div>`;
+        card.addEventListener('click', () => openProductModalFromModel(brandName, model));
+        grid.appendChild(card);
+      });
+      area.appendChild(grid);
+    };
+
+    renderGrid('Caméras', cameras);
+    renderGrid('Enregistreurs NVR', nvrs);
+  } else {
+    // Comportement normal pour les autres marques
+    const grid = document.createElement('div');
+    grid.className = 'products-grid';
+    const models = BRANDS_DATA[brandName]?.models || [];
+    models.forEach((model, i) => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.style.animationDelay = (i * 0.045) + 's';
+      const imgSrc = (model.images && model.images[0]) || '';
+      card.innerHTML = `
+        <div class="product-image">
+          ${imgSrc ? `<img src="${imgSrc.replace(/\\/g, '/')}" alt="${(model.name || '').replace(/"/g, '&quot;')}" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas fa-image\\'></i></span>'">` : '<span class="icon-placeholder"><i class="fas fa-image"></i></span>'}
+        </div>
+        <div class="product-info">
+          <div class="product-name">${(model.name || '').replace(/</g, '&lt;')}</div>
+        </div>`;
+      card.addEventListener('click', () => openProductModalFromModel(brandName, model));
+      grid.appendChild(card);
+    });
+    area.appendChild(grid);
+  }
+
+  document.getElementById('emptyState').classList.remove('show');
+}
+
+function backFromModels() {
+  if (!currentBrandBack) { showAll(); return; }
+  currentView = 'catalogue';
+  const { catId, subId } = currentBrandBack;
+  currentBrandBack = null;
+  filterSub(catId, subId);
+}
+
+function buildSubBlock(sub, catId) {
+  const cat = CATALOGUE.find(c => c.id === catId);
+  const wrapper = document.createElement('div');
+  wrapper.className = 'sub-block';
+  wrapper.innerHTML = `<div class="sub-block-title">${sub.label}</div>`;
+  const grid = document.createElement('div');
+  grid.className = 'products-grid';
+  let delay = 0;
+  const brands = BRAND_SUBCAT_MAP[sub.id];
+  if (brands && brands.length) {
+    brands.forEach(brandName => {
+      if (!BRANDS_DATA[brandName]) return;
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.style.animationDelay = (delay++ * 0.045) + 's';
+      const firstModel = BRANDS_DATA[brandName].models[0];
+      const imgSrc = firstModel && firstModel.images ? firstModel.images[0] : '';
+      card.innerHTML = `
+        <div class="product-image">
+          ${imgSrc ? `<img src="${imgSrc.replace(/\\/g, '/')}" alt="${brandName.replace(/"/g, '&quot;')}" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas ${cat?.icon || 'fa-box'}\\'></i></span>'">` : `<span class="icon-placeholder"><i class="fas ${cat?.icon || 'fa-box'}"></i></span>`}
+        </div>
+        <div class="product-info">
+          <div class="product-name">${brandName.replace(/</g, '&lt;')}</div>
+        </div>`;
+      card.addEventListener('click', () => showModelsOfBrand(brandName, catId, sub.id));
+      grid.appendChild(card);
+    });
+  }
+  sub.products.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.style.animationDelay = (delay++ * 0.045) + 's';
+    const imgSrc = p.images && p.images[0] ? p.images[0] : '';
+    card.innerHTML = `
+      <div class="product-image">
+        ${imgSrc ? `<img src="${imgSrc.replace(/\\/g, '/')}" alt="${(p.name || '').replace(/"/g, '&quot;')}" onerror="this.outerHTML='<span class=icon-placeholder><i class=\\'fas ${cat?.icon || 'fa-box'}\\'></i></span>'">` : `<span class="icon-placeholder"><i class="fas ${cat?.icon || 'fa-box'}"></i></span>`}
+      </div>
+      <div class="product-info">
+        <div class="product-name">${(p.name || '').replace(/</g, '&lt;')}</div>
+      </div>`;
+    card.addEventListener('click', () => openProductModal(catId, sub.id, i));
+    grid.appendChild(card);
+  });
+  wrapper.appendChild(grid);
+  return wrapper;
+}
+
+// ==================== INIT ====================
+buildSidebar();
+renderAll();
+
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = burger.classList.contains('open') ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+</script>
+</body>
+</html>

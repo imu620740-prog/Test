@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Brain Storm Group</title>
+  <meta name="description" content="Contactez Brain Storm Group pour vos projets de sécurité, défense, industrie ou lutte contre le feu. Notre équipe d'experts vous répond sous 24h.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- VARIABLES (identiques à l'accueil) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f8f8f6;
+      --surface: #f5f5f3;
+      --border: #eaeae8;
+      --text-primary: #1c1b1b;
+      --text-secondary: #5e5e5a;
+      --text-muted: #a3a39e;
+      --accent: #b58b5b;            /* or doux, identique à l'accueil */
+      --accent-light: #f3ede4;
+      --nav-h: 70px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --transition: all 0.3s var(--ease);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ---------- TYPO & UTILS ---------- */
+    .wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      border-bottom: 1.5px solid var(--accent);
+      padding-bottom: 0.25rem;
+    }
+
+    .h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Boutons arrondis, modernes */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--text-primary);
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border-radius: 40px;
+    }
+
+    .btn:hover {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .btn-fill {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .btn-fill:hover {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* animations reveal */
+    .reveal, .reveal-x, .reveal-r {
+      opacity: 0;
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal { transform: translateY(24px); }
+    .reveal-x { transform: translateX(-24px); }
+    .reveal-r { transform: translateX(24px); }
+    .reveal.on, .reveal-x.on, .reveal-r.on {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    /* ---------- NAVBAR (identique aux autres pages) ---------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      z-index: 200;
+      transition: var(--transition);
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--border);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+    }
+    .nav-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .logo img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .logo-text span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 3rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 450;
+      transition: color 0.2s;
+      text-decoration: none;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-primary);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
+    }
+    .nav-links a.active {
+      color: var(--accent);
+    }
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--text-primary);
+      transition: 0.3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(16px);
+      z-index: 199;
+      padding: 2.5rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+    }
+
+    /* ---------- HERO (minimal, sans image) ---------- */
+    #page-hero {
+      padding-top: calc(var(--nav-h) + 4rem);
+      padding-bottom: 4rem;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+    .ph-bread {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .ph-bread a:hover { color: var(--accent); }
+    .ph-bread i { font-size: 0.5rem; color: var(--border); }
+    .ph-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 10vw, 5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+    .ph-title span { color: var(--accent); }
+
+    /* ---------- MAIN CONTACT (coordonnées + formulaire) ---------- */
+    #main-contact {
+      padding: 5rem 0 7rem;
+      background: var(--bg);
+    }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.45fr;
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: start;
+    }
+
+    /* Colonne gauche */
+    .ci-top .h2 { margin-bottom: 1.5rem; }
+    .ci-top p {
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      max-width: 400px;
+    }
+    .info-block { margin-bottom: 2.2rem; }
+    .info-block-title {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .info-block-title::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .info-item i {
+      width: 18px;
+      text-align: center;
+      color: var(--accent);
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+    .info-item a { transition: color 0.2s; color: var(--text-primary); }
+    .info-item a:hover { color: var(--accent); }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 0.8rem;
+      font-size: 0.82rem;
+    }
+    .hours-day { color: var(--text-secondary); }
+    .hours-time { color: var(--text-primary); font-weight: 500; }
+    .socials {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 2rem;
+    }
+    .soc {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border-radius: 50%;
+    }
+    .soc:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: white;
+    }
+
+    /* Délai de réponse */
+    .response-card {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      border-radius: var(--radius-md);
+    }
+    .response-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(181,139,91,0.1);
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--accent);
+      border-radius: 50%;
+    }
+    .response-text strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .response-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Formulaire */
+    .form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: clamp(2rem, 4vw, 3.5rem);
+      border-radius: var(--radius-md);
+    }
+    .form-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+    .form-sub {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Tabs */
+    .req-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      border-radius: 40px;
+    }
+    .req-tab {
+      flex: 1;
+      padding: 0.7rem 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border);
+      transition: background 0.25s, color 0.25s;
+    }
+    .req-tab:last-child { border-right: none; }
+    .req-tab.active {
+      background: var(--accent);
+      color: white;
+    }
+    .req-tab:hover:not(.active) {
+      color: var(--text-primary);
+      background: var(--bg-alt);
+    }
+
+    /* Champs */
+    .fg { margin-bottom: 1.1rem; }
+    .fg label {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .fg input,
+    .fg textarea,
+    .fg select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.95rem 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.86rem;
+      outline: none;
+      transition: var(--transition);
+      border-radius: 40px;
+    }
+    .fg textarea { border-radius: 24px; resize: vertical; min-height: 130px; }
+    .fg input:focus,
+    .fg textarea:focus,
+    .fg select:focus {
+      border-color: var(--accent);
+    }
+    .fg input::placeholder,
+    .fg textarea::placeholder {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+    .fg select { appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="2,4 10,4 6,9" fill="%23a3a39e"/></svg>'); background-repeat: no-repeat; background-position: right 1rem center; }
+    .fg-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .fg-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .fg-check input[type=checkbox] {
+      width: 16px;
+      height: 16px;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .fg-check label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .fg-check label a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit .btn-loader {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid white;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Succès */
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    #form-success .success-ico {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(181,139,91,0.12);
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+    #form-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    #form-success p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 320px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    /* ---------- BUREAUX (implantations) ---------- */
+    #offices {
+      padding: 5rem 0;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+    }
+    .offices-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .offices-header p {
+      max-width: 360px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+
+    .office-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .office-card {
+      background: var(--bg);
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+    }
+    .office-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.05);
+      border-color: var(--accent);
+    }
+    .office-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--border);
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+      line-height: 1;
+    }
+    .office-flag { font-size: 2rem; margin-bottom: 0.8rem; }
+    .office-city {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+    .office-country {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .office-detail {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .office-detail i { width: 16px; color: var(--accent); opacity: 0.7; }
+    .office-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.25rem 0.8rem;
+      border: 1px solid var(--border);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-radius: 40px;
+    }
+
+    /* Carte */
+    .map-wrap {
+      position: relative;
+      height: 380px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      border-radius: var(--radius-md);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(0.2) contrast(0.95);
+    }
+    .map-overlay {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      z-index: 2;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      max-width: 260px;
+      border-radius: var(--radius-md);
+    }
+    .map-overlay strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .map-overlay span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- FAQ ---------- */
+    #faq {
+      padding: 5rem 0;
+      background: var(--bg);
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: start;
+    }
+    .faq-intro p {
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+      line-height: 1.8;
+      max-width: 320px;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 0;
+      gap: 1rem;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: color 0.25s;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-q.open { color: var(--accent); }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+      border-radius: 50%;
+    }
+    .faq-q.open .faq-icon {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-a.open {
+      max-height: 400px;
+      padding-bottom: 1.4rem;
+    }
+
+    /* ---------- FOOTER (identique aux autres pages) ---------- */
+    #footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 4rem 0 2rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .footer-logo { height: 42px; width: auto; margin-bottom: 1.2rem; }
+    .footer-logo-txt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .footer-logo-txt span { color: var(--accent); }
+    .f-tag {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 260px;
+    }
+    .f-rccm {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+    .fc h5 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .fc ul { list-style: none; }
+    .fc ul li+li { margin-top: 0.6rem; }
+    .fc ul li a {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .fc ul li a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-links { display: flex; gap: 2rem; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; }
+      .office-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-container > .btn { display: none; }
+      .burger { display: flex; }
+      .office-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .fg-row { grid-template-columns: 1fr; }
+      .req-tabs { flex-wrap: wrap; border-radius: 40px; }
+      .req-tab { flex: 1 0 calc(50% - 1px); border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (identique aux autres pages) -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="accueil.html" class="logo" aria-label="Accueil">
+      <img src="logo.jpeg" alt="Brain Storm Group" onerror="this.style.display='none';document.getElementById('nlt').style.display='block'">
+      <div id="nlt" class="logo-text" style="display:none">Brain <span>Storm</span> Group</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="accueil.html">Accueil</a></li>
+      <li><a href="about.html">À propos</a></li>
+      <li><a href="produits.html">Produits</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="#form-section" class="btn btn-fill" style="padding:0.5rem 1.8rem;">Devis</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="accueil.html">Accueil</a>
+  <a href="about.html">À propos</a>
+  <a href="produits.html">Produits</a>
+  <a href="contact.html">Contact</a>
+  <a href="#form-section" class="btn btn-fill" style="margin-top:1rem;">Demande de devis</a>
+</div>
+
+<main>
+  <!-- HERO (minimal, sans image) -->
+  <section id="page-hero">
+    <div class="wrap">
+      <div class="ph-content reveal">
+        <div class="ph-bread">
+          <a href="accueil.html">Accueil</a>
+          <i class="fas fa-chevron-right"></i>
+          <span style="color:var(--accent)">Contact</span>
+        </div>
+        <h1 class="ph-title">Parlez-nous<br>de votre <span>projet</span></h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT PRINCIPAL -->
+  <section id="main-contact">
+    <div class="wrap">
+      <div class="contact-layout">
+        <!-- Colonne gauche : coordonnées -->
+        <div>
+          <div class="ci-top reveal">
+            <span class="label">Nous joindre</span>
+            <h2 class="h2">Restons<br>en contact</h2>
+            <p>Notre équipe d'experts est disponible pour répondre à toutes vos questions et vous accompagner dans vos projets de sécurité, de la première prise de contact à la livraison.</p>
+          </div>
+
+          <div class="reveal" style="transition-delay:0.1s">
+            <div class="info-block">
+              <div class="info-block-title">Coordonnées</div>
+              <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <div style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.2rem;">E-mail</div>
+                  <a href="mailto:info@brainstormgroup.com">info@brainstormgroup.com</a>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                  <div style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.2rem;">Téléphone</div>
+                  <a href="tel:+2290197871000">+229 01 97 87 10 00</a>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                  <div style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.2rem;">WhatsApp</div>
+                  <a href="https://wa.me/2290195408698">+229 01 95 40 86 98</a>
+                </div>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <div style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.2rem;">Adresse</div>
+                  <span>Cotonou, Bénin<br>SARL · RCCM CI-ABJ-2018-B-09091</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <div class="info-block-title">Horaires d'ouverture</div>
+              <div class="hours-grid">
+                <span class="hours-day">Lundi — Vendredi</span>
+                <span class="hours-time">08h00 – 18h00</span>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <div class="info-block-title">Réseaux sociaux</div>
+              <div class="socials">
+                <a href="#" class="soc" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="soc" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" class="soc" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="soc" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+
+            <!-- Délai de réponse -->
+            <div class="response-card">
+              <div class="response-icon"><i class="fas fa-clock"></i></div>
+              <div class="response-text">
+                <strong>Réponse sous 24h</strong>
+                <span>Tous les messages sont traités par nos experts le jour ouvrable suivant.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne droite : formulaire -->
+        <div class="form-wrap reveal-r" id="form-section">
+          <div id="form-inner">
+            <div class="form-head">Envoyer un message</div>
+            <p class="form-sub">Remplissez le formulaire ci-dessous et notre équipe vous contactera dans les meilleurs délais.</p>
+
+            <!-- Tabs type de demande -->
+            <div class="req-tabs" role="tablist" aria-label="Type de demande">
+              <button class="req-tab active" data-tab="devis" role="tab">Devis</button>
+              <button class="req-tab" data-tab="info" role="tab">Information</button>
+              <button class="req-tab" data-tab="partenariat" role="tab">Partenariat</button>
+              <button class="req-tab" data-tab="autre" role="tab">Autre</button>
+            </div>
+
+            <form id="cform" novalidate>
+              <input type="hidden" name="type_demande" id="type_demande" value="devis">
+
+              <div class="fg-row">
+                <div class="fg">
+                  <label for="prenom">Prénom *</label>
+                  <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+                </div>
+                <div class="fg">
+                  <label for="nom">Nom *</label>
+                  <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+                </div>
+              </div>
+
+              <div class="fg-row">
+                <div class="fg">
+                  <label for="email">E-mail *</label>
+                  <input type="email" id="email" name="email" placeholder="jean.dupont@exemple.com" required>
+                </div>
+                <div class="fg">
+                  <label for="telephone">Téléphone</label>
+                  <input type="tel" id="telephone" name="telephone" placeholder="+229 XX XX XX XX">
+                </div>
+              </div>
+
+              <div class="fg">
+                <label for="organisation">Organisation / Entreprise</label>
+                <input type="text" id="organisation" name="organisation" placeholder="Ministère de la Défense, Société XYZ…">
+              </div>
+
+              <div class="fg-row">
+                <div class="fg">
+                  <label for="domaine">Domaine concerné *</label>
+                  <select id="domaine" name="domaine" required>
+                    <option value="" disabled selected>Choisir…</option>
+                    <option value="defense">Défense & Sécurité</option>
+                    <option value="industrie">Industrie & Infrastructures</option>
+                    <option value="feu">Lutte contre le feu</option>
+                    <option value="telecom">Télécommunications</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </div>
+                <div class="fg">
+                  <label for="pays">Pays</label>
+                  <input type="text" id="pays" name="pays" placeholder="Bénin, Côte d'Ivoire…">
+                </div>
+              </div>
+
+              <div class="fg">
+                <label for="objet">Objet *</label>
+                <input type="text" id="objet" name="objet" placeholder="Ex. : Fourniture de radios tactiques HF" required>
+              </div>
+
+              <div class="fg">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" placeholder="Décrivez votre besoin, le contexte du projet, les quantités souhaitées…" required></textarea>
+              </div>
+
+              <div class="fg-check">
+                <input type="checkbox" id="rgpd" name="rgpd" required>
+                <label for="rgpd">J'accepte que mes données soient traitées par Brain Storm Group dans le cadre de ma demande, conformément à notre <a href="#">politique de confidentialité</a>. *</label>
+              </div>
+
+              <button type="submit" class="btn btn-fill btn-submit" id="submit-btn">
+                <span id="btn-text">Envoyer le message</span>
+                <span class="btn-loader" id="btn-loader"></span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Message succès (caché initialement) -->
+          <div id="form-success">
+            <div class="success-ico"><i class="fas fa-check"></i></div>
+            <h3>Message envoyé !</h3>
+            <p>Merci pour votre demande. Notre équipe vous contactera dans les 24 heures ouvrables.</p>
+            <button class="btn btn-fill" onclick="resetForm()">Envoyer un autre message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUREAUX (implantations) -->
+  <section id="offices">
+    <div class="wrap">
+      <div class="offices-header">
+        <div class="reveal">
+          <span class="label">Présence régionale</span>
+          <h2 class="h2">Nos implantations</h2>
+        </div>
+        <p class="reveal" style="transition-delay:0.1s">Brain Storm Group opère à travers l'Afrique de l'Ouest. Retrouvez nos équipes locales prêtes à vous accueillir.</p>
+      </div>
+
+      <div class="office-grid">
+        <div class="office-card reveal">
+          <span class="office-num">01</span>
+          <div class="office-flag">🇧🇯</div>
+          <div class="office-city">Cotonou</div>
+          <div class="office-country">Bénin — Siège social</div>
+          <div class="office-detail"><i class="fas fa-map-marker-alt"></i>Immeuble AYINA, C/01481(S). Face à l'ex casse-auto (Kouhounou VEDOKO)</div>
+          <div class="office-detail"><i class="fas fa-phone"></i>(+229) 01 61 97 88 05</div>
+          <div class="office-detail"><i class="fas fa-envelope"></i>info@brainstormgroup.com</div>
+          <span class="office-tag">Siège & Logistique</span>
+        </div>
+        <div class="office-card reveal" style="transition-delay:0.1s">
+          <span class="office-num">02</span>
+          <div class="office-flag">🇨🇮</div>
+          <div class="office-city">Abidjan</div>
+          <div class="office-country">Côte d'Ivoire — Bureau régional</div>
+          <div class="office-detail"><i class="fas fa-map-marker-alt"></i>22BPM 1252ABJ22 COCODY; Angré 9ème Tranche Rue CNPS</div>
+          <div class="office-detail"><i class="fas fa-phone"></i>(+225) 07 00 37 05 30</div>
+          <div class="office-detail"><i class="fas fa-envelope"></i>abidjan@brainstormgroup.com</div>
+          <span class="office-tag">Commerce & Conseil</span>
+        </div>
+        <div class="office-card reveal" style="transition-delay:0.2s">
+          <span class="office-num">03</span>
+          <div class="office-flag">🇿🇦</div>
+          <div class="office-city">Johannesburg</div>
+          <div class="office-country">Afrique du Sud — Bureau régional</div>
+          <div class="office-detail"><i class="fas fa-map-marker-alt"></i>25 King Edward Road, Park Johannesburg 2090</div>
+          <div class="office-detail"><i class="fas fa-phone"></i>(+27) 78 173 5110</div>
+          <div class="office-detail"><i class="fas fa-envelope"></i>joburg@brainstormgroup.com</div>
+          <span class="office-tag">Défense & Institutions</span>
+        </div>
+        <div class="office-card reveal" style="transition-delay:0.3s">
+          <span class="office-num">04</span>
+          <div class="office-flag">🇹🇬</div>
+          <div class="office-city">Lomé</div>
+          <div class="office-country">Togo — Bureau régional</div>
+          <div class="office-detail"><i class="fas fa-map-marker-alt"></i>TOTSI, IMMEUBLE EN FACE DE L'ECOLE</div>
+          <div class="office-detail"><i class="fas fa-phone"></i>(+228) 72 33 36 57</div>
+          <div class="office-detail"><i class="fas fa-envelope"></i>lome@brainstormgroup.com</div>
+          <span class="office-tag">Sécurité civile</span>
+        </div>
+      </div>
+
+      <!-- Carte (Cotonou) -->
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126832.44890574788!2d2.281765!3d6.366536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a9160c04eb01%3A0x5d0e2a0ab8c3bffc!2sCotonou%2C%20B%C3%A9nin!5e0!3m2!1sfr!2sfr!4v1700000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Localisation Brain Storm Group – Cotonou, Bénin">
+        </iframe>
+        <div class="map-overlay">
+          <strong>Brain Storm Group</strong>
+          <span>Cotonou, Bénin<br>Zone des Ambassades</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="faq-layout">
+        <div class="faq-intro reveal">
+          <span class="label">Questions fréquentes</span>
+          <h2 class="h2">Tout ce<br>que vous<br>devez savoir</h2>
+          <p>Vous ne trouvez pas la réponse à votre question ? Contactez-nous directement via le formulaire.</p>
+          <div style="margin-top:2.5rem">
+            <a href="#form-section" class="btn btn-fill">Nous écrire</a>
+          </div>
+        </div>
+
+        <div class="faq-list reveal" style="transition-delay:0.15s">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Quels types d'organisations pouvez-vous servir ?
+              <span class="faq-icon"><i class="fas fa-plus"></i></span>
+            </button>
+            <div class="faq-a">
+              Brain Storm Group travaille avec des ministères de la Défense, des forces de sécurité, des services de protection civile, des entreprises industrielles privées, des opérateurs d'infrastructures critiques (ports, aéroports, centrales) et des services d'urgence (pompiers, SAMU) dans toute l'Afrique de l'Ouest.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Dans quels pays intervenez-vous ?
+              <span class="faq-icon"><i class="fas fa-plus"></i></span>
+            </button>
+            <div class="faq-a">
+              Notre zone d'intervention principale couvre l'Afrique de l'Ouest et Centrale : Bénin, Côte d'Ivoire, Sénégal, Togo, Niger, Burkina Faso, Mali, Cameroun, RDC, et d'autres pays selon les projets. Nous pouvons également opérer hors de cette zone sur demande.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Proposez-vous des formations sur vos équipements ?
+              <span class="faq-icon"><i class="fas fa-plus"></i></span>
+            </button>
+            <div class="faq-a">
+              Oui, chaque livraison d'équipement peut être accompagnée d'une formation opérationnelle dispensée par nos techniciens certifiés ou les représentants des fabricants. Nous proposons des formations sur site ou dans nos locaux, en français ou en anglais.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Quels sont vos délais de livraison habituels ?
+              <span class="faq-icon"><i class="fas fa-plus"></i></span>
+            </button>
+            <div class="faq-a">
+              Les délais varient selon les équipements et leur disponibilité chez nos fournisseurs. Pour le stock disponible localement, la livraison peut intervenir sous 2 à 5 jours ouvrables. Pour les commandes à l'international, le délai moyen est de 4 à 12 semaines selon la nature du matériel et les procédures douanières.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Proposez-vous un service après-vente et de maintenance ?
+              <span class="faq-icon"><i class="fas fa-plus"></i></span>
+            </button>
+            <div class="faq-a">
+              Absolument. Brain Storm Group assure un service après-vente complet incluant la garantie fabricant, la maintenance préventive et corrective, la fourniture de pièces détachées et le support technique. Des contrats de maintenance annuels peuvent être négociés pour les équipements critiques.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Comment se déroule une demande de devis ?
+              <span class="faq-icon"><i class="fas fa-plus"></i></span>
+            </button>
+            <div class="faq-a">
+              Après réception de votre formulaire, un chargé d'affaires vous contacte sous 24h pour affiner votre besoin. Un devis détaillé vous est ensuite transmis sous 3 à 5 jours ouvrables, accompagné de fiches techniques. Les projets complexes peuvent nécessiter une visite préalable sur site.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <img src="logo.jpeg" alt="Brain Storm Group" class="footer-logo" onerror="this.style.display='none';document.getElementById('ft-txt').style.display='block'">
+        <div id="ft-txt" class="footer-logo-txt" style="display:none">Brain<span>Storm</span></div>
+        <p class="f-tag">Intégrateur de solutions sécuritaires pour la défense, l'industrie et les services de secours en Afrique de l'Ouest.</p>
+        <p class="f-rccm">SARL · RCCM CI-ABJ-2018-B-09091</p>
+      </div>
+      <div class="fc">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="accueil.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="accueil.html#services">Services</a></li>
+          <li><a href="produits.html">Produits</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Domaines</h5>
+        <ul>
+          <li><a href="accueil.html#services">Défense & Sécurité</a></li>
+          <li><a href="accueil.html#services">Industrie</a></li>
+          <li><a href="accueil.html#services">Lutte contre le feu</a></li>
+          <li><a href="contact.html">Devis sur mesure</a></li>
+        </ul>
+      </div>
+      <div class="fc">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@brainstormgroup.com"><i class="fas fa-envelope" style="margin-right:0.5rem;"></i>info@brainstormgroup.com</a></li>
+          <li><span><i class="fas fa-map-marker-alt" style="margin-right:0.5rem;"></i>Cotonou, Bénin</span></li>
+        </ul>
+        <div class="socials" style="margin-top:1.5rem">
+          <a href="#" class="soc"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="soc"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="soc"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Brain Storm Group — Tous droits réservés</span>
+      <div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+(()=>{
+  'use strict';
+  const navbar=document.getElementById('navbar');
+  navbar.classList.add('scrolled');
+  const burger=document.getElementById('burger'),mobileMenu=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>{
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    burger.classList.remove('open');mobileMenu.classList.remove('open');document.body.style.overflow='';
+  }));
+
+  // Scroll reveal
+  const revs=document.querySelectorAll('.reveal,.reveal-x,.reveal-r');
+  if('IntersectionObserver' in window){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+    },{threshold:0.1});
+    revs.forEach(el=>obs.observe(el));
+  } else revs.forEach(el=>el.classList.add('on'));
+
+  // Tabs
+  const tabs=document.querySelectorAll('.req-tab');
+  const hiddenType=document.getElementById('type_demande');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      if(hiddenType) hiddenType.value=tab.dataset.tab;
+    });
+  });
+
+  // Formulaire
+  const form=document.getElementById('cform');
+  const formInner=document.getElementById('form-inner');
+  const formSuccess=document.getElementById('form-success');
+  const submitBtn=document.getElementById('submit-btn');
+  const btnText=document.getElementById('btn-text');
+  const btnLoader=document.getElementById('btn-loader');
+
+  if(form){
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const required=form.querySelectorAll('[required]');
+      let valid=true;
+      required.forEach(field=>{
+        field.style.borderColor='';
+        if(!field.value.trim()||(field.type==='checkbox'&&!field.checked)){
+          field.style.borderColor='#e05555';
+          valid=false;
+        }
+      });
+      if(!valid) return;
+
+      btnText.style.display='none';
+      btnLoader.style.display='block';
+      submitBtn.disabled=true;
+
+      setTimeout(()=>{
+        formInner.style.display='none';
+        formSuccess.style.display='block';
+      },1400);
+    });
+
+    form.querySelectorAll('input,textarea,select').forEach(f=>{
+      f.addEventListener('focus',()=>f.style.borderColor='');
+    });
+  }
+
+  window.resetForm=function(){
+    form.reset();
+    formInner.style.display='block';
+    formSuccess.style.display='none';
+    btnText.style.display='inline';
+    btnLoader.style.display='none';
+    submitBtn.disabled=false;
+    tabs.forEach((t,i)=>t.classList.toggle('active',i===0));
+    if(hiddenType) hiddenType.value='devis';
+  };
+
+  // FAQ accordion
+  const faqBtns=document.querySelectorAll('.faq-q');
+  faqBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const isOpen=btn.classList.contains('open');
+      faqBtns.forEach(b=>{
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded','false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if(!isOpen){
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        btn.nextElementSibling.classList.add('open');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
